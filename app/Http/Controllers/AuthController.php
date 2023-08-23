@@ -21,11 +21,11 @@ class AuthController extends Controller
 
            } else if(Auth::user()->user_type == 3) {
 
-            return redirect('student/dashboard');
+                return redirect('student/dashboard');
 
            } else if(Auth::user()->user_type == 4) {
             
-            return redirect('parent/dashboard');
+                return redirect('parent/dashboard');
 
            }
         }
@@ -35,6 +35,7 @@ class AuthController extends Controller
     public function AuthLogin(Request $request)
     {
         $remember = !empty($request->remember) ? true : false ;
+        
         if(Auth::attempt(['email' => $request->email, 'password' => $request->password], $remember))
         {
            if (Auth::user()->user_type == 1) {
