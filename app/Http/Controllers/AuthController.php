@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Mail\ForgotPasswordMail;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Hash;
 
 class AuthController extends Controller
 {
@@ -91,6 +92,41 @@ class AuthController extends Controller
           }
           
 
+
+    }
+
+    public function reset($remember_token)
+    {
+          $user = User::getSingleToken($remember_token);
+          if (!empty($user_token)) {
+
+               $data['user'] = $user;
+
+               return view('auth.reset', $data);
+          } else {
+               
+               abort(404);
+          }
+          
+    }
+
+    public function PostReset($token, Request $request){
+
+         if ($request->password == $request->cpassword) {
+          
+          $user = User::getSingleToken($token);
+          $user->password = Hash::make($request->password);
+          $user->token = Str::random(30);
+          $user->save();
+          
+          return redirect(url(''))->back()->with('success',  "Password successfully reset");
+
+         } else {
+          
+          return redirect()->back()->with('error', 'Password and Confirm password does not match.');
+
+         }
+          
 
     }
 
