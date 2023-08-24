@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\User;
+use App\Mail\ForgotPasswordMail;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -61,6 +65,32 @@ class AuthController extends Controller
         {
             return redirect()->back()->with('error', 'Please enter correct email and password');
         }
+
+    }
+
+    public function forgotpassword(){
+
+     return view('auth.forgot');
+
+    }
+
+    public function PostForgotPassword(Request $request){
+
+          $user = User::getSingleMail($request->email);
+          if (!empty($user)) {
+               
+               $user->remember_token = Str::random(30);
+               $user->save();
+               Mail::to($user->email)->send(new ForgotPasswordMail($user));
+
+               return redirect()->back()->with('success', 'Please check your email and reset your password');
+
+          } else {
+               
+               return redirect()->back()->with('error', 'Email not found!.');
+          }
+          
+
 
     }
 
