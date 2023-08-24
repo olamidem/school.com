@@ -1,20 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>AdminLTE 3 | Simple Tables</title>
+@extends('layouts.app')
 
-  <!-- Google Font: Source Sans Pro -->
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{url('public/plugins/fontawesome-free/css/all.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{url('public/dist/css/adminlte.min.css')}}">
-</head>
-<body class="hold-transition sidebar-mini">
-<div class="wrapper">
-  @include('layouts.header')
+@section('content')
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -23,78 +9,67 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Simple Tables</h1>
+            <h1>Admin List</h1>
           </div>
-          <div class="col-sm-12">
+          <div class="col-sm-6" style="text-align: right">
+
+            <a href="{{url('admin/admin/add')}} " class="btn btn-primary">Add New Admin</a>
            
           </div>
         </div>
-      </div><!-- /.container-fluid -->
-    </section>
-
+      </div>
+      
     <!-- Main content -->
     <section class="content">
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
 
+            @include('_message')
+
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Striped Full Width Table</h3>
+                <h3 class="card-title">Admin List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
-                      <th style="width: 10px">#</th>
-                      <th>Task</th>
-                      <th>Progress</th>
-                      <th style="width: 40px">Label</th>
+                      <th>#</th>
+                      <th>Name</th>
+                      <th>Email</th>
+                      <th >Date Created</th>
+                      <th >Action</th>
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($getRecord as $value)
                     <tr>
-                      <td>1.</td>
-                      <td>Update software</td>
+                      <td>{{$value->id}}</td>
+                      <td>{{$value->name}}</td>
+                      <td>{{$value->email}}</td>
+                      <td>{{$value->created_at}}</td>
                       <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar progress-bar-danger" style="width: 55%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-danger">55%</span></td>
+                        <a  href="">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="max-height: 20px">
+                               <path stroke-linecap="round" stroke-linejoin="round" d="M16.862 4.487l1.687-1.688a1.875 1.875 0 112.652 2.652L10.582 16.07a4.5 4.5 0 01-1.897 1.13L6 18l.8-2.685a4.5 4.5 0 011.13-1.897l8.932-8.931zm0 0L19.5 7.125M18 14v4.75A2.25 2.25 0 0115.75 21H5.25A2.25 2.25 0 013 18.75V8.25A2.25 2.25 0 015.25 6H10" />
+                          </svg>
+                        </a>
+
+                        <a href="">
+                          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6" style="max-height: 20px; color:red;">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M14.74 9l-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 01-2.244 2.077H8.084a2.25 2.25 0 01-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 00-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 013.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 00-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 00-7.5 0" />
+                          </svg>
+                          
+                        </a>
+                    </td>
+                      
                     </tr>
-                    <tr>
-                      <td>2.</td>
-                      <td>Clean database</td>
-                      <td>
-                        <div class="progress progress-xs">
-                          <div class="progress-bar bg-warning" style="width: 70%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-warning">70%</span></td>
-                    </tr>
-                    <tr>
-                      <td>3.</td>
-                      <td>Cron job running</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-primary" style="width: 30%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-primary">30%</span></td>
-                    </tr>
-                    <tr>
-                      <td>4.</td>
-                      <td>Fix and squish bugs</td>
-                      <td>
-                        <div class="progress progress-xs progress-striped active">
-                          <div class="progress-bar bg-success" style="width: 90%"></div>
-                        </div>
-                      </td>
-                      <td><span class="badge bg-success">90%</span></td>
-                    </tr>
+                        
+                    @endforeach
+                   
                   </tbody>
                 </table>
               </div>
@@ -109,18 +84,5 @@
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
- @include('layouts.footer')
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
 
-<!-- jQuery -->
-<script src="{{url('public/plugins/jquery/jquery.min.js')}}"></script>
-<!-- Bootstrap 4 -->
-<script src="{{url('public//bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{url('public/dist/js/adminlte.min.js')}}"></script>
-
-</body>
-</html>
+@endsection

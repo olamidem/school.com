@@ -98,11 +98,13 @@ class AuthController extends Controller
     public function reset($remember_token)
     {
           $user = User::getSingleToken($remember_token);
-          if (!empty($user_token)) {
+
+          if (!empty($user)){
 
                $data['user'] = $user;
 
                return view('auth.reset', $data);
+
           } else {
                
                abort(404);
@@ -116,10 +118,11 @@ class AuthController extends Controller
           
           $user = User::getSingleToken($token);
           $user->password = Hash::make($request->password);
-          $user->token = Str::random(30);
+          $user->remember_token = Str::random(30);
           $user->save();
           
-          return redirect(url(''))->back()->with('success',  "Password successfully reset");
+          return redirect(url(''));
+          //->back()->with('success',  "Password successfully reset");
 
          } else {
           

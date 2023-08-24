@@ -26,8 +26,9 @@
       @include('_message')
       <form action="" method="post">
       {{ csrf_field()}}
+      
         <div class="input-group mb-3">
-          <input type="password" class="form-control" placeholder="password" required name="Password">
+          <input type="password" class="form-control" placeholder="password" required name="password">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-lock"></span>
