@@ -16,5 +16,7 @@ class ClassModel extends Model
                     ->join('users', 'users.id', 'class.created_by')
                     ->orderBy('class.id', 'desc')
                     ->paginate(20);
+
+        return $return;
     }
 }

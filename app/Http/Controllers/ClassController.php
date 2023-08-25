@@ -11,6 +11,7 @@ class ClassController extends Controller
    public function list(){
 
         $data['header_title'] = 'Class List';
+        $data['getRecord'] = ClassModel::getRecord();
 
         return view('admin.class.list',$data);
 
@@ -19,7 +20,6 @@ class ClassController extends Controller
    public function add(){
 
         $data['header_title'] = 'Add Class';
-        $data['getRecord'] = ClassModel::getRecord();
 
         return view('admin.class.add',$data);
 

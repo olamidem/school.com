@@ -102,11 +102,18 @@
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @foreach ($getRecord as $value)
+                    @foreach ($getRecord as $value)
                     <tr>
                       <td>{{$value->id}}</td>
                       <td>{{$value->name}}</td>
-                      <td>{{$value->email}}</td>
+                      <td>
+                        @if ($value->status == 0)
+                            Active
+                        @else
+                            
+                        @endif
+                      </td>
+                      <td>{{$value->created_by_name}}</td>
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                       <td>
                         <a  href="{{url('admin/admin/edit/'.$value->id)}}">
@@ -125,14 +132,14 @@
                       
                     </tr>
                         
-                    @endforeach --}}
+                    @endforeach
                    
                   </tbody>
                 </table>
 
                 <div style="float: right;padding: 10px">
                   
-                  {{-- {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!} --}}
+                  {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
 
                 </div>
                
