@@ -49,7 +49,7 @@ class User extends Authenticatable
     }
 
     static public function getAdmin(){
-        $return =  self::select('users.*')
+        $return =  User::select('users.*')
                         ->where('user_type', '=', 1)
                         ->where('is_delete', '=', 0);
 
