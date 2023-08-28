@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ClassController;
 use App\Http\Controllers\SubjectController;
+use App\Http\Controllers\ClassSubjectController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
