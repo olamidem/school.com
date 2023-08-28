@@ -26,8 +26,6 @@ Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 
-
-
 Route::group(['middleware' => 'admin'], function(){
     Route::get('admin/dashboard',[ DashboardController::class, 'dashboard']);
     Route::get('admin/admin/list', [AdminController::class, 'list']);
