@@ -23,8 +23,6 @@
     <!-- Main content -->
     <section class="content">
 
-
-      
       <div class="row">
         <!-- left column -->
         <div class="col-md-12">
@@ -65,8 +63,6 @@
                 
               </div>
               <!-- /.card-body -->
-
-             
             </form>
           </div>
           <!-- /.card -->
@@ -98,7 +94,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                    
+
                     @foreach ($getRecord as $value)
                     <tr>
                       <td>{{$value->id}}</td>
@@ -142,8 +138,6 @@
                   {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
 
                 </div>
-               
-  
                
               </div>
               <!-- /.card-body -->
