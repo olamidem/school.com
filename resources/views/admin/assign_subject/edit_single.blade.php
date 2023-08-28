@@ -30,7 +30,9 @@
                 <div class="card-body">
 
                   <div class="form-group">
+
                     <label>Class Name </label>
+                    
                     <select name="class_id" id="" class="form-control" required>
                         <option value="">Select Class</option>
                         @foreach ($getClass as $class)
@@ -40,33 +42,17 @@
                     
                   </div>
 
-                  <div class="form-group">
-                    <label for="">Subject Name</label>
-
-                    @foreach ($getSubject as $subject)
-                    
-                        @php
-                            $checked = '';
-                        @endphp
-
-                        @foreach ($getAssignedSubjectID as $subjectAssigned)
-                            @if($subjectAssigned->subject_id == $subject->id)
-                            @php
-                                $checked = 'checked';
-                            @endphp
-                            @endif
-                        @endforeach
-
-                      <div class="form-check" style="text-transform: uppercase;cursor: pointer !important;" >
-                        
-                        <label class="form-check-label"  >
-                          <input {{$checked}} class="form-check-input" type="checkbox" value="{{$subject->id}}" name="subject_id[]" >
-                          {{$subject->name}}
-                        </label>
-                      </div>
-                      
-                    @endforeach
                 
+                  <div class="form-group">
+                    <label>Subject Name </label>
+                    
+                    <select name="subject_id" id="" class="form-control" required>
+                        <option value="">Select Subject</option>
+                        @foreach ($getSubject as $subject)
+                        <option {{($getRecord->subject_id == $subject->id) ? 'selected' : ''}} value="{{$subject->id}}">{{$subject->name}}</option>
+                        @endforeach
+                    </select>
+                    
                   </div>
 
                   <div class="form-group">

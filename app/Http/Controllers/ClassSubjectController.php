@@ -131,4 +131,25 @@ class ClassSubjectController extends Controller
         return redirect()->back()->with('success', 'Subject assigned Successfully Deleted ');
 
     }
+
+    public function edit_single($id){
+
+        $getRecord = ClassSubjectModel::getSingle($id);
+
+        if (!empty($getRecord)) {
+
+            $data['getRecord'] = $getRecord;
+            $data['header_title'] = 'Edit Assigned Subject';
+
+            $data['getClass'] = ClassModel::getClass();
+            $data['getSubject'] = SubjectModel::getSubject();
+
+            return view('admin/assign_subject/edit_single', $data);
+
+        } else {
+            
+            abort(404);
+        }
+
+    }
 }
