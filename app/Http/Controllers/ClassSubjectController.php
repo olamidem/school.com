@@ -65,7 +65,6 @@ class ClassSubjectController extends Controller
         
     }
 
-
     public function edit($id){
 
         $getRecord = ClassSubjectModel::getSingle($id);
