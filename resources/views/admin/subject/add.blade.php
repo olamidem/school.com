@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Admin</h1>
+            <h1>Add New Subject</h1>
           </div>
           
         </div>
@@ -30,20 +30,31 @@
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label >Full Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name' )}}" required placeholder="Full Name">
+                    <label >Subject Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name' )}}" required placeholder="Subject Name">
+                    <div style="color: red">{{$errors->first('name')}}</div> 
                   </div>
 
                   <div class="form-group">
-                    <label>Email </label>
-                    <input type="email" class="form-control" name="email" required value="{{ old('email') }}" placeholder="Enter email">
-                    <div style="color: red">{{$errors->first('email')}}</div>
+                    <label>Subject Type </label>
+                    <select name="type" id="" class="form-control" required>
+                        <option value="">Select Type</option>
+                        <option value="Theory">Theory</option>
+                        <option value="Practical">Practical</option>
+                    </select>
+                    
                   </div>
 
                   <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                    <label>Subject Status </label>
+                    <select name="status" id="" class="form-control">
+                        <option value="0">Active</option>
+                        <option value="1">Inactive</option>
+                    </select>
+                    
                   </div>
+
+                 
                   
                 </div>
                 <!-- /.card-body -->

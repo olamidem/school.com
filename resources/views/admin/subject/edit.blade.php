@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Add New Admin</h1>
+            <h1>Edit Class</h1>
           </div>
           
         </div>
@@ -30,26 +30,37 @@
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label >Full Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name' )}}" required placeholder="Full Name">
+                    <label >Subject Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name', $getRecord->name )}}" required placeholder="Class Namee">
+                    
                   </div>
 
                   <div class="form-group">
-                    <label>Email </label>
-                    <input type="email" class="form-control" name="email" required value="{{ old('email') }}" placeholder="Enter email">
-                    <div style="color: red">{{$errors->first('email')}}</div>
+                    <label>Subject Type </label>
+                    <select name="type" id="" class="form-control">
+                        <option value="">Select Type</option>
+                        <option {{($getRecord->type == 'Theory') ? 'selected' : ''}} value="Theory">Theory</option>
+                        <option {{($getRecord->type == 'Practical') ? 'selected' : ''}} value="Practical">Practical</option>
+                    </select>
+                    
                   </div>
 
                   <div class="form-group">
-                    <label>Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Password">
+                    <label>Status </label>
+                    <select name="status" id="" class="form-control">
+                        <option {{($getRecord->status == 0) ? 'selected' : ''}} value="0">Active</option>
+                        <option {{($getRecord->status == 1) ? 'selected' : ''}} value="1">Inactive</option>
+                    </select>
+                    
                   </div>
+
+                 
                   
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <button type="submit" class="btn btn-primary">Update</button>
                 </div>
               </form>
             </div>

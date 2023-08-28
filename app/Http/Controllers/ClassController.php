@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\ClassModel;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 
 class ClassController extends Controller
 {
@@ -26,6 +27,11 @@ class ClassController extends Controller
    }
 
    public function insert(Request $request){
+
+     request()->validate([
+          'name' => 'required|unique:class'
+      ]);
+
 
         $class = new ClassModel();
         $class->name = $request->name;

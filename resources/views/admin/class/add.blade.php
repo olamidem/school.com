@@ -30,12 +30,13 @@
                 <div class="card-body">
 
                   <div class="form-group">
-                    <label >Name</label>
-                    <input type="text" class="form-control" name="name" value="{{ old('name' )}}" required placeholder="Class Namee">
+                    <label >Class Name</label>
+                    <input type="text" class="form-control" name="name" value="{{ old('name' )}}" required placeholder="Class Name">
+                    <div style="color: red">{{$errors->first('name')}}</div> 
                   </div>
 
                   <div class="form-group">
-                    <label>Status </label>
+                    <label>Class Status </label>
                     <select name="status" id="" class="form-control">
                         <option value="0">Active</option>
                         <option value="1">Inactive</option>
