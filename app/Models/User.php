@@ -71,7 +71,8 @@ class User extends Authenticatable
         return $return;
     }
     static public function getStudent(){
-        $return =  User::select('users.*')
+        $return =  User::select('users.*', 'class.name as class_name')
+                        ->join('class','class.id', '=', 'users.class_id', 'left')
                         ->where('users.user_type', '=', 3)
                         ->where('users.is_delete', '=', 0);
 
