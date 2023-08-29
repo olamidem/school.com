@@ -79,7 +79,7 @@ class StudentController extends Controller
         $student->address = trim($request->address);
         $student->email = trim($request->email);
         $student->password = hash::make($request->password);
-        $student->user_type = 3;;
+        $student->user_type = 3;
 
         $student->save();
 

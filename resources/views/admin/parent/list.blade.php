@@ -9,11 +9,11 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Student List (Total - {{$getRecord->total()}})</h1>
+            <h1>Parent List (Total - {{$getRecord->total()}})</h1>
           </div>
           <div class="col-sm-6" style="text-align: right">
 
-            <a href="{{url('admin/student/add')}} " class="btn btn-primary">Add New Student</a>
+            <a href="{{url('admin/parent/add')}} " class="btn btn-primary">Add New Parent</a>
            
           </div>
         </div>
@@ -30,7 +30,7 @@
           <!-- general form elements -->
           <div class="card ">
             <div class="card-header">
-              <h3 class="card-title">Search Student </h3>
+              <h3 class="card-title">Search Parent </h3>
             </div>
             <form method="get">
       
@@ -38,32 +38,26 @@
 
                 <div class="row">
                   <div class="form-group col-md-3">
-                    <label >Name</label>
-                    <input type="text" class="form-control" name="name" value="{{Request::get(trim('name'))}}"  placeholder="Full Name">
+                    <label >Full Name</label>
+                    <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Full Name">
                   </div>
   
                   <div class="form-group col-md-3">
                     <label>Email </label>
-                    <input type="text" class="form-control" name="email"  value="{{Request::get('email')}}" placeholder="Email">
-      
-                  </div>
-
-                  <div class="form-group col-md-2">
-                    <label>Admission Number </label>
-                    <input type="text" class="form-control" name="admission_number"  value="{{trim(Request::get('admission_number'))}}" placeholder="Admission Number ">
+                    <input type="text" class="form-control" name="email"  value="{{Request::get('email')}}" placeholder="Enter email">
       
                   </div>
                   
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-3">
                     <label>Date </label>
-                    <input type="date" class="form-control" name="date"  value="{{Request::get('date')}}" >
+                    <input type="date" class="form-control" name="date"  value="{{Request::get('date')}}" placeholder="Enter email">
       
                   </div>
 
-                  <div class="form-group col-md-2">
+                  <div class="form-group col-md-3 ">
                    
                       <button type="submit" class="btn btn-primary  " style="margin-top: 30px">Search</button>
-                      <a href="{{url('admin/student/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
+                      <a href="{{url('admin/admin/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
                  
                   </div>
 
@@ -87,10 +81,10 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Student List</h3>
+                <h3 class="card-title">Parent List</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0" style="overflow: auto">
+              <div class="card-body p-0">
                 <table class="table table-striped">
                   <thead>
                     <tr>
@@ -98,17 +92,9 @@
                       <th>Profile Pic</th>
                       <th>Name</th>
                       <th>Email</th>
-                      <th>Admission Number</th>
-                      <th>Roll Number</th>
-                      <th>Class</th>
-                      <th>Gender</th>
-                      <th>Date Of Birth</th>
-                      <th>Religion</th>
                       <th>Phone Number</th>
-                      <th>Admission Date</th>
-                      <th>Blood Group</th>
-                      <th>Height</th>
-                      <th>Weight</th>
+                      <th>Occupation</th>
+                      <th>Gender</th>
                       <th>Status</th>
                       <th >Date Created</th>
                       <th >Action</th>
@@ -129,29 +115,9 @@
                       </td>
                       <td>{{$value->name}}</td>
                       <td>{{$value->email}}</td>
-                      <td>{{$value->admission_number}}</td>
-                      <td>{{$value->roll_number}}</td>
-                      <td>{{$value->class_name}}</td>
-                      <td>{{$value->gender}}</td>
-                      <td>
-                        @if (!empty($value->date_of_birth))
-
-                          {{date('d-m-Y', strtotime($value->date_of_birth))}}
-                            
-                        @endif
-                      </td>
-                      <td>{{$value->religion}}</td>
                       <td>{{$value->mobile_number}}</td>
-                      <td>
-                        @if (!empty($value->admission_date))
-
-                          {{date('d-m-Y', strtotime($value->admission_date))}}
-                            
-                        @endif 
-                      </td>
-                      <td>{{$value->blood_group}}</td>
-                      <td>{{$value->height}}</td>
-                      <td>{{$value->weight}}</td>
+                      <td>{{$value->occupation}}</td>
+                      <td>{{$value->gender}}</td>
                       <td>
                         @if ($value->status == 0)
                             <span class="badge badge-success">Active</span>
@@ -159,14 +125,13 @@
                             <span class="badge badge-danger">Inactive</span>
                         @endif
                       </td>
-                      
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                       <td>
-                        <a  href="{{url('admin/student/edit/'.$value->id)}}">
+                        <a  href="{{url('admin/parent/edit/'.$value->id)}}">
                           <i class="fas fa-edit"></i>
                         </a>
 
-                        <a href="{{url('admin/student/delete/'.$value->id)}}" style="color: red">
+                        <a href="{{url('admin/parent/delete/'.$value->id)}}" style="color: red">
                           <i class="fas fa-trash"></i>
                           
                         </a>
@@ -197,7 +162,7 @@
  
       </div><!-- /.container-fluid -->
     </section>
-       <!-- /.content -->
+    <!-- /.content -->
   </div>
 
-  @endsection
+@endsection

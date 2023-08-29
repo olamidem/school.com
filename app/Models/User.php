@@ -76,6 +76,33 @@ class User extends Authenticatable
                         ->where('users.user_type', '=', 3)
                         ->where('users.is_delete', '=', 0);
 
+                        if(!empty(Request::get('email'))){
+                            $return =   $return->where('email', 'like','%'.Request::get('email').'%');
+                        }
+
+                        if(!empty(Request::get('name'))){
+                            $return =   $return->where('users.name', 'like','%'.Request::get('name').'%');
+                        }
+
+                        if(!empty(Request::get('admission_number '))){
+                            $return =   $return->where('admission_number', 'like','%'.Request::get('admission_number').'%');
+                        }
+
+                        if(!empty(Request::get('date'))){
+                            $return =   $return->whereDate('created_at', '=', Request::get('date'));
+                        }
+
+                        $return =   $return->orderBy('users.id', 'desc')
+                        ->paginate(20);
+
+        return $return;
+    }
+
+    static public function getParent(){
+        $return =  User::select('users.*')
+                        ->where('user_type', '=', 4)
+                        ->where('is_delete', '=', 0);
+
                         // if(!empty(Request::get('email'))){
                         //     $return =   $return->where('email', 'like','%'.Request::get('email').'%');
                         // }
@@ -88,12 +115,11 @@ class User extends Authenticatable
                         //     $return =   $return->whereDate('created_at', '=', Request::get('date'));
                         // }
 
-                        $return =   $return->orderBy('users.id', 'desc')
+                        $return =   $return->orderBy('id', 'desc')
                         ->paginate(20);
 
         return $return;
     }
-
     static public function getSingleMail($email)
     {
         return User::where('email', '=', $email)->first();
