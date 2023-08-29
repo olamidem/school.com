@@ -12,6 +12,12 @@ class UserController extends Controller
 
         $data['header_title'] = 'Change Password';
 
-        return view('profile.change_password');
+        return view('profile.change_password', $data);
+    }
+
+    public function update_change_password(Request $request){
+       
+        
+
     }
 }

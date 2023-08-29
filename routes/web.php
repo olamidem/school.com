@@ -66,7 +66,7 @@ Route::group(['middleware' => 'admin'], function(){
     Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
 
     Route::get('admin/change_password', [UserController::class, 'change_password']);
-    Route::post('admin/change_password', [UserController::class, 'change_password']);
+    Route::post('admin/change_password', [UserController::class, 'update_change_password']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){
@@ -74,7 +74,7 @@ Route::group(['middleware' => 'teacher'], function(){
     Route::get('teacher/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::get('teacher/change_password', [UserController::class, 'change_password']);
-    Route::post('teacher/change_password', [UserController::class, 'change_password']);
+    Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
    
 });
 
@@ -82,7 +82,7 @@ Route::group(['middleware' => 'student'], function(){
     Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::get('student/change_password', [UserController::class, 'change_password']);
-    Route::post('student/change_password', [UserController::class, 'change_password']);
+    Route::post('student/change_password', [UserController::class, 'update_change_password']);
 
 });
 
@@ -90,7 +90,7 @@ Route::group(['middleware' => 'parent'],  function(){
     Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
 
     Route::get('parent/change_password', [UserController::class, 'change_password']);
-    Route::post('parent/change_password', [UserController::class, 'change_password']);
+    Route::post('parent/change_password', [UserController::class, 'update_change_password']);
 
 });
 
