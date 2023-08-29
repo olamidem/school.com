@@ -125,6 +125,11 @@ class StudentController extends Controller
         }
 
         if (!empty($request->file('profile_pic'))) {
+
+            if(!empty($student->getProfile())){
+
+                unlink('upload/profile/'.$student->profile_pic);
+            }
             
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
             $file = $request->file('profile_pic');
