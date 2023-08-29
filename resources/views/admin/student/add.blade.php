@@ -25,7 +25,7 @@
             <!-- general form elements -->
             <div class="card card-primary">
              
-              <form method="POST">
+              <form method="POST" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="card-body">
                     <div class="row">
