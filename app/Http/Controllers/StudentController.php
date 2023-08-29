@@ -25,6 +25,10 @@ class StudentController extends Controller
 
         return view('admin/student/add', $data);
     }
+
+    public function insert(Request $request){
+        
+    }
     
 
 }
