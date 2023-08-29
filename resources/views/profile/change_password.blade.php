@@ -20,8 +20,9 @@
     <section class="content">
       <div class="container-fluid">
         <div class="row">
-          <!-- left column -->
+    
           <div class="col-md-12">
+            @include('_message')
             <!-- general form elements -->
             <div class="card card-primary">
              
@@ -31,7 +32,7 @@
 
                   <div class="form-group">
                     <label>Old Password</label>
-                    <input type="password" class="form-control" name="password" required placeholder="Old Password">
+                    <input type="password" class="form-control" name="old_password" required placeholder="Old Password">
                   </div>
                   
                   <div class="form-group">
