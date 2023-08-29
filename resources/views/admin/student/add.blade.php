@@ -48,6 +48,9 @@
                             <label > Class <span style="color: red">*</span></label>
                             <select name="class_id" id="" class="form-control" required>
                                 <option value="">Select Class</option>
+                                @foreach ($getClass as $class)
+                                <option value="{{$class->id}}">{{$class->name}}</option>
+                                @endforeach
                             </select>
                         </div>
 
