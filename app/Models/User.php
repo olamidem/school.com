@@ -103,17 +103,20 @@ class User extends Authenticatable
                         ->where('user_type', '=', 4)
                         ->where('is_delete', '=', 0);
 
-                        // if(!empty(Request::get('email'))){
-                        //     $return =   $return->where('email', 'like','%'.Request::get('email').'%');
-                        // }
+                        if(!empty(Request::get('email'))){
+                            $return =   $return->where('email', 'like','%'.Request::get('email').'%');
+                        }
 
-                        // if(!empty(Request::get('name'))){
-                        //     $return =   $return->where('name', 'like','%'.Request::get('name').'%');
-                        // }
+                        if(!empty(Request::get('name'))){
+                            $return =   $return->where('name', 'like','%'.Request::get('name').'%');
+                        }
+                        if(!empty(Request::get('mobile_number'))){
+                            $return =   $return->where('mobile_number', 'like','%'.Request::get('mobile_number').'%');
+                        }
 
-                        // if(!empty(Request::get('date'))){
-                        //     $return =   $return->whereDate('created_at', '=', Request::get('date'));
-                        // }
+                        if(!empty(Request::get('date'))){
+                            $return =   $return->whereDate('created_at', '=', Request::get('date'));
+                        }
 
                         $return =   $return->orderBy('id', 'desc')
                         ->paginate(20);

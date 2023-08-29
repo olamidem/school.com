@@ -38,8 +38,8 @@
 
                 <div class="row">
                   <div class="form-group col-md-3">
-                    <label >Full Name</label>
-                    <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Full Name">
+                    <label >Name</label>
+                    <input type="text" class="form-control" name="name" value="{{Request::get('name')}}"  placeholder="Name">
                   </div>
   
                   <div class="form-group col-md-3">
@@ -47,17 +47,23 @@
                     <input type="text" class="form-control" name="email"  value="{{Request::get('email')}}" placeholder="Enter email">
       
                   </div>
+
+                  <div class="form-group col-md-2">
+                    <label>Phone Number </label>
+                    <input type="text" class="form-control" name="mobile_number"  value="{{Request::get('mobile_number')}}" placeholder="Phone Number">
+      
+                  </div>
                   
-                  <div class="form-group col-md-3">
+                  <div class="form-group col-md-2">
                     <label>Date </label>
                     <input type="date" class="form-control" name="date"  value="{{Request::get('date')}}" placeholder="Enter email">
       
                   </div>
 
-                  <div class="form-group col-md-3 ">
+                  <div class="form-group col-md-2 ">
                    
                       <button type="submit" class="btn btn-primary  " style="margin-top: 30px">Search</button>
-                      <a href="{{url('admin/admin/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
+                      <a href="{{url('admin/parent/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
                  
                   </div>
 
@@ -101,9 +107,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                        $index = 1
+                    @endphp
                     @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{$value->id}}</td>
+                      <td>{{$index++}}</td>
                       <td>
                         @if (!empty($value->getProfile()))
                            

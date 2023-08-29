@@ -94,10 +94,12 @@
                     </tr>
                   </thead>
                   <tbody>
-
+                    @php
+                      $index = 1
+                    @endphp
                     @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{$value->id}}</td>
+                      <td>{{$index ++}}</td>
                       <td>{{$value->class_name}}</td>
                       <td>{{$value->subject_name}}</td>
                       <td>

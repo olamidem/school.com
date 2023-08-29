@@ -96,9 +96,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                        $index = 1
+                    @endphp
                     @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{$value->id}}</td>
+                      <td>{{$index++}}</td>
                       <td>{{$value->name}}</td>
                       <td>{{$value->email}}</td>
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>

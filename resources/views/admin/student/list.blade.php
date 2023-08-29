@@ -115,9 +115,12 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @php
+                        $index = 1
+                    @endphp
                     @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{$value->id}}</td>
+                      <td>{{$index++}}</td>
                       <td>
                         @if (!empty($value->getProfile()))
                            

@@ -61,7 +61,7 @@ class ParentController extends Controller
 
         $parent->save();
 
-        return redirect('admin/student/list')->with('success', 'Parent Successfully Created');
+        return redirect('admin/parent/list')->with('success', 'Parent Successfully Created');
 
     }
 
