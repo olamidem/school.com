@@ -136,12 +136,12 @@ class ParentController extends Controller
             $getRecord->is_delete = 1;
             $getRecord->save();
 
-            return redirect()->back()->with('success', 'Student Successfully Deleted');
+            return redirect()->back()->with('success', 'Parent Successfully Deleted');
 
         }else{
             abort(404);
         }
-        
+
     }
     
 }
