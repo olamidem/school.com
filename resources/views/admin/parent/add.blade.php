@@ -65,9 +65,12 @@
                         </div>
 
                         <div class="form-group col-md-6">
-                            <label >Profile Picture <span style="color: red"></span></label>
-                            <input type="file" class="form-control" name="profile_pic" value="{{ old('profile_pic' )}}" placeholder="Profile Picture" >
+                          <label >Profile Picture <span style="color: red"></span></label>
+                          <div class="custom-file">
+                            <input type="file" class="custom-file-input form-control" id="customFile" name="profile_pic" value="{{ old('profile_pic' )}}" placeholder="Profile Picture" >
+                            <label class="custom-file-label" for="customFile">Choose file</label>
                             <div style="color: red">{{$errors->first('profile_pic')}}</div>
+                          </div>
                         </div>
 
                         <div class="form-group col-md-6">

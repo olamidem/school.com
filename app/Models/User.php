@@ -123,6 +123,37 @@ class User extends Authenticatable
 
         return $return;
     }
+
+    static public function getSearchStudent(){
+
+        if (!empty(Request::get('id'))  || !empty(Request::get('name')) || !empty(Request::get('email'))) {
+            
+            $return =  User::select('users.*', 'class.name as class_name')
+                        ->join('class','class.id', '=', 'users.class_id', 'left')
+                        ->where('users.user_type', '=', 3)
+                        ->where('users.is_delete', '=', 0);
+
+                        if(!empty(Request::get('email'))){
+                            $return =   $return->where('email', 'like','%'.Request::get('email').'%');
+                        }
+
+                        if(!empty(Request::get('name'))){
+                            $return =   $return->where('users.name', 'like','%'.Request::get('name').'%');
+                        }
+
+                        if(!empty(Request::get('id'))){
+                            $return =   $return->where('users.id', '=',Request::get('id'));
+                        }
+
+
+                        $return =   $return->orderBy('users.id', 'desc')
+                        ->limit(50)
+                        ->get();
+
+        return $return;
+        }
+    }
+
     static public function getSingleMail($email)
     {
         return User::where('email', '=', $email)->first();

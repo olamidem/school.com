@@ -95,6 +95,7 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Student ID</th>
                       <th>Profile Pic</th>
                       <th>Name</th>
                       <th>Email</th>
@@ -121,6 +122,7 @@
                     @foreach ($getRecord as $value)
                     <tr>
                       <td>{{$index++}}</td>
+                      <td>{{$value->id}}</td>
                       <td>
                         @if (!empty($value->getProfile()))
                            
