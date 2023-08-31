@@ -228,11 +228,23 @@
           </li>
 
           @elseif(Auth::user()->user_type == 2)
+
           <li class="nav-item menu-open">
             <a href="{{url('teacher/dashboard')}}" class="nav-link @if ( Request::segment(2) == 'dashboard') active @endif ">
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="{{url('teacher/account')}}" class="nav-link @if ( Request::segment(2) == 'account') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Account
 
               </p>
             </a>
@@ -263,6 +275,17 @@
 
           </li>
 
+          <li class="nav-item menu-open">
+            <a href="{{url('student/account')}}" class="nav-link @if ( Request::segment(2) == 'account') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Account
+
+              </p>
+            </a>
+
+          </li>
+
           <li class="nav-item">
             <a href="{{url('student/change_password')}}" class="nav-link @if ( Request::segment(2) == 'change_password') active @endif ">
               <i class="nav-icon fas fa-book"></i>
@@ -275,13 +298,23 @@
           </li>
 
           @elseif(Auth::user()->user_type == 4)
-          
-      
+        
           <li class="nav-item menu-open">
             <a href="{{url('parent/dashboard')}}" class="nav-link @if ( Request::segment(2) == 'dashboard') active @endif >
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
+
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="{{url('parent/account')}}" class="nav-link @if ( Request::segment(2) == 'account') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Account
 
               </p>
             </a>

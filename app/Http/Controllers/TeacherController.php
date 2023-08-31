@@ -145,7 +145,7 @@ class TeacherController extends Controller
 
         $teacher->save();
 
-        return redirect('admin/teacher/list')->with('success', 'Teacher Successfully Update');
+        return redirect('admin/teacher/list')->with('success', 'Teacher Successfully Updated');
     }
 
     public function delete($id){
