@@ -9,11 +9,12 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parent List (Total - {{$getRecord->total()}})</h1>
+            <h1>Teacher List  (Total - {{$getRecord->total()}})</h1>
+           
           </div>
           <div class="col-sm-6" style="text-align: right">
 
-            <a href="{{url('admin/parent/add')}} " class="btn btn-primary">Add New Parent</a>
+            <a href="{{url('admin/teacher/add')}} " class="btn btn-primary">Add New Teacher</a>
            
           </div>
         </div>
@@ -30,7 +31,7 @@
           <!-- general form elements -->
           <div class="card ">
             <div class="card-header">
-              <h3 class="card-title">Search Parent </h3>
+              <h3 class="card-title">Search Teacher </h3>
             </div>
             <form method="get">
       
@@ -63,7 +64,7 @@
                   <div class="form-group col-md-2 ">
                    
                       <button type="submit" class="btn btn-primary  " style="margin-top: 30px">Search</button>
-                      <a href="{{url('admin/parent/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
+                      <a href="{{url('admin/teacher/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
                  
                   </div>
 
@@ -87,7 +88,7 @@
             <!-- /.card -->
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Parent List</h3>
+                <h3 class="card-title">Teacher List</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body p-0">
@@ -99,8 +100,9 @@
                       <th>Name</th>
                       <th>Email</th>
                       <th>Phone Number</th>
-                      <th>Occupation</th>
                       <th>Gender</th>
+                      <th>Qualification</th>
+                      <th>Date Joined</th>
                       <th>Status</th>
                       <th >Date Created</th>
                       <th >Action</th>
@@ -125,8 +127,9 @@
                       <td>{{$value->name}}</td>
                       <td>{{$value->email}}</td>
                       <td>{{$value->mobile_number}}</td>
-                      <td>{{$value->occupation}}</td>
                       <td>{{$value->gender}}</td>
+                      <td>{{$value->qualification}}</td>
+                      <td>{{$value->joined_date}}</td>
                       <td>
                         @if ($value->status == 0)
                             <span class="badge badge-success">Active</span>
@@ -137,17 +140,17 @@
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                     
                       <td class="project-actions text-right">
-                          <a class="btn btn-primary btn-sm" href="{{url('admin/parent/my_student/'.$value->id)}}">
+                          {{-- <a class="btn btn-primary btn-sm" href="{{url('admin/parent/my_student/'.$value->id)}}">
                               <i class="fas fa-folder">
                               </i>
                               My Student
-                          </a>
-                          <a class="btn btn-info btn-sm" href="{{url('admin/parent/edit/'.$value->id)}}">
+                          </a> --}}
+                          <a class="btn btn-primary btn-sm" href="{{url('admin/teacher/edit/'.$value->id)}}">
                               <i class="fas fa-edit">
                               </i>
                               Edit
                           </a>
-                          <a class="btn btn-danger btn-sm" {{url('admin/parent/delete/'.$value->id)}}" >
+                          <a class="btn btn-danger btn-sm" href="{{url('admin/teacher/delete/'.$value->id)}}" >
                               <i class="fas fa-trash">
                               </i>
                               Delete

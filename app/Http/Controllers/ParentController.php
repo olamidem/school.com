@@ -145,11 +145,32 @@ class ParentController extends Controller
     }
 
     public function myStudent($id){
+         
+        $data['getParent'] = User::getSingle($id);
         $data['parent_id'] = $id;
         $data['getSearchStudent'] = User::getSearchStudent();
+        $data['getRecord'] = User::getMyStudent($id);
         $data['header_title'] = 'Parent Student';
         return view('admin/parent/my_student', $data);
         
     }
+
+    public function AssignStudentToParent($student_id, $parent_id){
+
+        $student = User::getSingle($student_id);
+        $student->parent_id = $parent_id;
+        $student->save();
+
+        return redirect()->back()->with('success', 'Student Successfully Assigned to Parent');
+    }
     
+    public function AssignStudentToParentDelete($student_id){
+
+        $student = User::getSingle($student_id);
+        $student->parent_id = null;
+        $student->save();
+
+        return redirect()->back()->with('success', 'Assigned Student Successfully Removed');
+
+    }
 }

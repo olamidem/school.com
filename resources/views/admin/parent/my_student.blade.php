@@ -9,7 +9,7 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-6">
-            <h1>Parent Student List </h1>
+            <h1>Student Parent List </h1>
           </div>
         </div>
       </div>
@@ -53,7 +53,7 @@
                   <div class="form-group col-md-2 ">
                    
                       <button type="submit" class="btn btn-primary  " style="margin-top: 30px">Search</button>
-                      <a href="{{url('admin/parent/my-student/'.$parent_id)}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
+                      <a href="{{url('admin/parent/my_student/'.$parent_id)}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
                  
                   </div>
 
@@ -73,7 +73,7 @@
           <div class="col-md-12">
 
             @include('_message')
-
+            
         @if (!empty($getSearchStudent))
 
             <!-- /.card -->
@@ -89,8 +89,9 @@
                       <th>#</th>
                       <th>Student ID</th>
                       <th>Profile Pic</th>
-                      <th>Name</th>
+                      <th>Student Name</th>
                       <th>Email</th>
+                      <th>Parent Name</th>
                       <th >Date Created</th>
                       <th >Action</th>
                     </tr>
@@ -114,15 +115,21 @@
                       </td>
                       <td>{{$value->name}}</td>
                       <td>{{$value->email}}</td>
+
+                        @if(empty($value->parent_id))
+
+                        <td>Parent Not yet Assigned</td>
+                        @else 
+                            
+                            <td>{{$value->parent_name}}</td>
+                        @endif
+
+                       
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
+
                       <td>
-
-                        <a href="{{url('admin/parent/delete/'.$value->id)}}" style="color: red">
-                          <i class="fas fa-trash"></i>
-                          
-                        </a>
-
-                    </td>
+                        <a href="{{url('admin/parent/assign_student_to_parent/'.$value->id.'/'.$parent_id)}}" class="btn btn-sm btn-primary">Assign Parent</a>
+                      </td>
                       
                     </tr>
                         
@@ -142,7 +149,7 @@
             <!-- /.card -->
             <div class="card">
                 <div class="card-header">
-                  <h3 class="card-title">Parent List</h3>
+                  <h3 class="card-title">Student Parent List</h3>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body p-0">
@@ -151,18 +158,15 @@
                       <tr>
                         <th>#</th>
                         <th>Profile Pic</th>
-                        <th>Name</th>
+                        <th>Student Name</th>
                         <th>Email</th>
-                        <th>Phone Number</th>
-                        <th>Occupation</th>
-                        <th>Gender</th>
-                        <th>Status</th>
+                        <th>Parent Name</th>
                         <th >Date Created</th>
                         <th >Action</th>
                       </tr>
                     </thead>
                     <tbody>
-                      {{-- @php
+                      @php
                           $index = 1
                       @endphp
                       @foreach ($getRecord as $value)
@@ -179,29 +183,20 @@
                         </td>
                         <td>{{$value->name}}</td>
                         <td>{{$value->email}}</td>
-                        <td>{{$value->mobile_number}}</td>
-                        <td>{{$value->occupation}}</td>
-                        <td>{{$value->gender}}</td>
-                        <td>
-                          @if ($value->status == 0)
-                              <span class="badge badge-success">Active</span>
-                          @else
-                              <span class="badge badge-danger">Inactive</span>
-                          @endif
-                        </td>
+                        <td>{{$value->parent_name}}</td>
+                        
                         <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                         <td>
-  
-                          <a href="{{url('admin/parent/delete/'.$value->id)}}" style="color: red">
+                          <a class="btn btn-danger btn-sm" href="{{url('admin/parent/assign_student_to_parent_delete/'.$value->id)}}">
                             <i class="fas fa-trash"></i>
-                            
+                              Unassign Parent
                           </a>
-  
+
                       </td>
                         
                       </tr>
                           
-                      @endforeach --}}
+                      @endforeach
                      
                     </tbody>
                   </table>

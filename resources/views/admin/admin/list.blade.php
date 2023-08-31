@@ -101,20 +101,23 @@
                     @endphp
                     @foreach ($getRecord as $value)
                     <tr>
-                      <td>{{$index++}}</td>
-                      <td>{{$value->name}}</td>
-                      <td>{{$value->email}}</td>
-                      <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-                      <td>
-                        <a  href="{{url('admin/admin/edit/'.$value->id)}}">
-                          <i class="fas fa-edit"></i>
-                        </a>
-
-                        <a href="{{url('admin/admin/delete/'.$value->id)}}" style="color: red">
-                          <i class="fas fa-trash"></i>
-                          
-                        </a>
-                    </td>
+                        <td>{{$index++}}</td>
+                        <td>{{$value->name}}</td>
+                        <td>{{$value->email}}</td>
+                        <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
+                      
+                        <td class="project-actions ">
+                            
+                            <a class="btn btn-primary btn-sm" href="{{url('admin/admin/edit/'.$value->id)}}">
+                              <i class="fas fa-edit"></i>
+                                Edit
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="{{url('admin/admin/delete/'.$value->id)}}" >
+                                <i class="fas fa-trash">
+                                </i>
+                                Delete
+                            </a>
+                        </td>
                       
                     </tr>
                         

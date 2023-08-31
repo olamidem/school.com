@@ -110,16 +110,19 @@
                       </td>
                       <td>{{$value->created_by_name}}</td>
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-                      <td>
-                        <a  href="{{url('admin/subject/edit/'.$value->id)}}">
-                          <i class="fas fa-edit"></i>
-                        </a>
 
-                        <a href="{{url('admin/subject/delete/'.$value->id)}}" style="color: red">
-                          <i class="fas fa-trash"></i>
+                      <td class="project-actions ">
                           
+                        <a class="btn btn-primary btn-sm" href="{{url('admin/subject/edit/'.$value->id)}}">
+                          <i class="fas fa-edit"></i>
+                            Edit
                         </a>
-                    </td>
+                        <a class="btn btn-danger btn-sm" href="{{url('admin/subject/delete/'.$value->id)}}" >
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
+                        </a>
+                      </td>
                       
                     </tr>
                         

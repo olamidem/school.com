@@ -113,20 +113,25 @@
                       </td>
                       <td>{{$value->created_by_name}}</td>
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-                      <td>
-                        <a  href="{{url('admin/assign_subject/edit_single/'.$value->id)}}">
-                          <i class="fas fa-pen"></i>
-                        </a>
 
-                        <a  href="{{url('admin/assign_subject/edit/'.$value->id)}}">
-                          <i class="fas fa-edit"></i>
+                      <td class="project-actions text-right">
+                        <a class="btn btn-primary btn-sm" href="{{url('admin/assign_subject/edit_single/'.$value->id)}}">
+                            <i class="fas fa-pen-alt">
+                            </i>
+                            Edit Single
                         </a>
-
-                        <a href="{{url('admin/assign_subject/delete/'.$value->id)}}" style="color: red">
-                          <i class="fas fa-trash"></i>
-                          
+                        <a class="btn btn-info btn-sm" href="{{url('admin/parent/edit/'.$value->id)}}">
+                            <i class="fas fa-edit">
+                            </i>
+                            Edit
+                        </a>
+                        <a class="btn btn-danger btn-sm" href="{{url('admin/assign_subject/delete/'.$value->id)}}" >
+                            <i class="fas fa-trash">
+                            </i>
+                            Delete
                         </a>
                     </td>
+
                       
                     </tr>
                         

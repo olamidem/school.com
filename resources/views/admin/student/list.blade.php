@@ -97,7 +97,8 @@
                       <th>#</th>
                       <th>Student ID</th>
                       <th>Profile Pic</th>
-                      <th>Name</th>
+                      <th>Student Name</th>
+                      <th>Parent Name</th>
                       <th>Email</th>
                       <th>Admission Number</th>
                       <th>Roll Number</th>
@@ -133,6 +134,13 @@
                         @endif
                       </td>
                       <td>{{$value->name}}</td>
+                      <td>
+                        @if (!empty($value->parent_name))
+                          {{$value->parent_name}}
+                        @else
+                            Yet to Assign
+                        @endif
+                      </td>
                       <td>{{$value->email}}</td>
                       <td>{{$value->admission_number}}</td>
                       <td>{{$value->roll_number}}</td>
@@ -166,16 +174,20 @@
                       </td>
                       
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-                      <td>
-                        <a  href="{{url('admin/student/edit/'.$value->id)}}">
-                          <i class="fas fa-edit"></i>
-                        </a>
-
-                        <a href="{{url('admin/student/delete/'.$value->id)}}" style="color: red">
-                          <i class="fas fa-trash"></i>
+                      
+                      <td class="project-actions ">
                           
-                        </a>
-                    </td>
+                          <a class="btn btn-primary btn-sm" href="{{url('admin/student/edit/'.$value->id)}}">
+                            <i class="fas fa-edit"></i>
+                              Edit
+                          </a>
+                          <a class="btn btn-danger btn-sm" href="{{url('admin/student/delete/'.$value->id)}}" >
+                              <i class="fas fa-trash">
+                              </i>
+                              Delete
+                          </a>
+                      </td>
+                   
                       
                     </tr>
                         
