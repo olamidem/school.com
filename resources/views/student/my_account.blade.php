@@ -49,9 +49,9 @@
   
                   <h3 class="profile-username text-center">{{$getRecord->name}}</h3>
 
-                    @if ($getRecord->user_type == 2)
+                    @if ($getRecord->user_type == 3)
                         <p class="text-muted text-center"> 
-                            Teacher
+                            Student
                         </p> 
                     @endif
                      
@@ -80,10 +80,10 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  <strong><i class="fas fa-book mr-1"></i> Education</strong>
+                  <strong><i class="fas fa-book mr-1"></i> Class</strong>
   
                   <p class="text-muted">
-                    {{$getRecord->qualification}}
+                    {{$getRecord->class_name}}
                   </p>
   
                   <hr>
@@ -100,10 +100,10 @@
   
                   <hr>
   
-                  <strong><i class="fas fa-calendar mr-1"></i> Date Joined</strong>
+                  <strong><i class="fas fa-calendar mr-1"></i> Admission Date</strong>
   
                   <p class="text-muted">
-                    {{$getRecord->joined_date}}
+                    {{$getRecord->admission_date}}
                   </p>
   
                   <hr>
