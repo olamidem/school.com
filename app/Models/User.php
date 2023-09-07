@@ -206,6 +206,22 @@ class User extends Authenticatable
         return $return;
                     
     }
+    static public function getMy($parent_id){
+    
+            $return =  User::select('users.*',  'parent.name as parent_name')
+                        ->join('users as parent', 'parent.id', '=', 'users.parent_id')
+                        ->where('users.user_type', '=', 3)
+                        ->where('users.parent_id', '=', $parent_id)
+                        ->where('users.is_delete', '=', 0)
+                        ->orderBy('users.id', 'desc')
+                   
+                        ->first();
+
+        return $return;
+                    
+    }
+
+
 
     static public function getSingleMail($email)
     {

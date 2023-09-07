@@ -95,8 +95,11 @@
   
                   <p class="text-muted">
                     {{$getRecord->admission_date}}
+                   
                   </p>
-                    
+                    {{-- @php
+                        print_r( $getStudent->parent_name)
+                    @endphp --}}
                   <hr>
 
                   <strong><i class="fas fa-book mr-1"></i> Class</strong>

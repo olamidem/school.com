@@ -16,9 +16,6 @@ class UserController extends Controller
 
         $data['getRecord'] =  User::getSingle(Auth::user()->id);
         $data['getClass'] =  User::getClassName(Auth::user()->id);
-        $data['getParent'] =  User::getClassName(Auth::user()->id);
-        //$data['getStudentParentName'] =  User::getStudent(Auth::user()->id);
-
         $data['header_title'] = 'My Account';
 
         if (Auth::user()->user_type == 2) {
@@ -38,18 +35,23 @@ class UserController extends Controller
     public function updateMyStudentAccount(Request $request){
         
         $id = Auth::user()->id;
-        request()->validate([
-
-            'email' => 'required|email|unique:users,email,'.$id,
-            'address' => 'max:255',
-            'mobile_number' => 'required| numeric | min:11',
-            'marital_status' => 'required| max:60',
+        $student = User::getSingle($id);
             
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id,
+            'height' => 'max:10',
+            'weight' => 'max:10',
+            'blood_group' => 'max:10',
+            'mobile_number' => 'max:15 | min:11',
+            'religion' => 'max:50',
         ]);
 
         $student = User::getSingle($id);
-        $student->name = trim($request->name);
-       
+
+        if (!empty($request->date_of_birth)) {
+            $student->date_of_birth = trim($request->date_of_birth);
+        }
+
         if (!empty($request->file('profile_pic'))) {
 
             if(!empty($student->getProfile())){
@@ -66,30 +68,27 @@ class UserController extends Controller
             $student->profile_pic = $filename;
              
         }
-
-        if (!empty($request->date_of_birth)) {
-            $student->date_of_birth = trim($request->date_of_birth);
-        }
+        $student->religion = trim($request->religion);
         $student->mobile_number = trim($request->mobile_number);
+        $student->name = trim($request->name);
+        $student->blood_group = trim($request->blood_group);
+        $student->height = trim($request->height);
+        $student->weight = trim($request->weight);
         $student->gender = trim($request->gender);
         $student->address = trim($request->address);
-        $student->religion = trim($request->religion);
-        $student->work_experience = trim($request->work_experience);
-        $student->qualification = trim($request->qualification);
-        $student->marital_status = trim($request->marital_status);
         $student->email = trim($request->email);
-
+        
         if (!empty($request->password)) {
 
-            $student->password = Hash::make($request->password);
-            
+            $student->password = hash::make($request->password);
         }
-    
+
         $student->save();
 
         return redirect()->back()->with('success', 'Account Successfully Updated');
 
     }
+    
 
     public function updateParentAccount(Request $request){
         

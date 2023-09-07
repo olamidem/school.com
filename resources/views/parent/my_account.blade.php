@@ -101,7 +101,6 @@
 
                   <p class="text-muted">
                     {{$getRecord->gender}}
-                  </p>
 
                   <hr>
   
