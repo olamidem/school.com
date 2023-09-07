@@ -15,6 +15,10 @@ class UserController extends Controller
     public function myAccount(){
 
         $data['getRecord'] =  User::getSingle(Auth::user()->id);
+        $data['getClass'] =  User::getClassName(Auth::user()->id);
+        $data['getParent'] =  User::getClassName(Auth::user()->id);
+        //$data['getStudentParentName'] =  User::getStudent(Auth::user()->id);
+
         $data['header_title'] = 'My Account';
 
         if (Auth::user()->user_type == 2) {
@@ -24,6 +28,10 @@ class UserController extends Controller
         else if(Auth::user()->user_type == 3){
             
             return view('student/my_account', $data);
+        }
+        else if(Auth::user()->user_type == 4){
+            
+            return view('parent/my_account', $data);
         }
     }
 
@@ -39,14 +47,14 @@ class UserController extends Controller
             
         ]);
 
-        $teacher = User::getSingle($id);
-        $teacher->name = trim($request->name);
+        $student = User::getSingle($id);
+        $student->name = trim($request->name);
        
         if (!empty($request->file('profile_pic'))) {
 
-            if(!empty($teacher->getProfile())){
+            if(!empty($student->getProfile())){
 
-                unlink('upload/profile/'.$teacher->profile_pic);
+                unlink('upload/profile/'.$student->profile_pic);
             }
             
             $ext = $request->file('profile_pic')->getClientOriginalExtension();
@@ -55,23 +63,78 @@ class UserController extends Controller
             $filename = strtolower($randomStr ).'.'.$ext;
             $file->move('upload/profile/', $filename);
 
-            $teacher->profile_pic = $filename;
+            $student->profile_pic = $filename;
              
         }
 
         if (!empty($request->date_of_birth)) {
-            $teacher->date_of_birth = trim($request->date_of_birth);
+            $student->date_of_birth = trim($request->date_of_birth);
         }
-        $teacher->mobile_number = trim($request->mobile_number);
-        $teacher->gender = trim($request->gender);
-        $teacher->address = trim($request->address);
-        $teacher->religion = trim($request->religion);
-        $teacher->work_experience = trim($request->work_experience);
-        $teacher->qualification = trim($request->qualification);
-        $teacher->marital_status = trim($request->marital_status);
-        $teacher->email = trim($request->email);
+        $student->mobile_number = trim($request->mobile_number);
+        $student->gender = trim($request->gender);
+        $student->address = trim($request->address);
+        $student->religion = trim($request->religion);
+        $student->work_experience = trim($request->work_experience);
+        $student->qualification = trim($request->qualification);
+        $student->marital_status = trim($request->marital_status);
+        $student->email = trim($request->email);
+
+        if (!empty($request->password)) {
+
+            $student->password = Hash::make($request->password);
+            
+        }
     
-        $teacher->save();
+        $student->save();
+
+        return redirect()->back()->with('success', 'Account Successfully Updated');
+
+    }
+
+    public function updateParentAccount(Request $request){
+        
+        $id = Auth::user()->id;
+        request()->validate([
+
+            'email' => 'required|email|unique:users,email,'.$id,
+            'address' => 'max:255',
+            'mobile_number' => 'required| numeric | min:11',
+
+        ]);
+
+        $parent = User::getSingle($id);
+        $parent->name = trim($request->name);
+       
+        if (!empty($request->file('profile_pic'))) {
+
+            if(!empty($parent->getProfile())){
+
+                unlink('upload/profile/'.$parent->profile_pic);
+            }
+            
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr ).'.'.$ext;
+            $file->move('upload/profile/', $filename);
+
+            $parent->profile_pic = $filename;
+             
+        }
+        $parent->mobile_number = trim($request->mobile_number);
+        $parent->occupation = trim($request->occupation);
+        $parent->gender = trim($request->gender);
+        $parent->address = trim($request->address);
+    
+        $parent->email = trim($request->email);
+
+        if (!empty($request->password)) {
+
+            $parent->password = Hash::make($request->password);
+            
+        }
+    
+        $parent->save();
 
         return redirect()->back()->with('success', 'Account Successfully Updated');
 
@@ -119,6 +182,12 @@ class UserController extends Controller
         $teacher->qualification = trim($request->qualification);
         $teacher->marital_status = trim($request->marital_status);
         $teacher->email = trim($request->email);
+
+        if (!empty($request->password)) {
+
+            $teacher->password = Hash::make($request->password);
+            
+        }
     
         $teacher->save();
 

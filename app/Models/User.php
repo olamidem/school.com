@@ -48,6 +48,13 @@ class User extends Authenticatable
         return self::find($id);
     }
 
+    static public function getClassName($id){
+        return User::join('class', 'users.class_id', '=', 'class.id')
+            ->where('users.id', $id)
+            ->select('class.name as class_name')
+            ->first();
+    }
+
     static public function getAdmin(){
         $return =  User::select('users.*')
                         ->where('user_type', '=', 1)
@@ -188,7 +195,7 @@ class User extends Authenticatable
     
             $return =  User::select('users.*', 'class.name as class_name', 'parent.name as parent_name')
                         ->join('users as parent', 'parent.id', '=', 'users.parent_id','left')
-                        ->join('class','class.id', '=', 'users.class_id', 'left')
+                         ->join('class','class.id', '=', 'users.class_id', 'left')
                         ->where('users.user_type', '=', 3)
                         ->where('users.parent_id', '=', $parent_id)
                         ->where('users.is_delete', '=', 0)

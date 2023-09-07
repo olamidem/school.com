@@ -80,34 +80,32 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                  @php
-                      // print_r($getStudentName->parent_name)
-                  @endphp
-                  <strong><i class="fas fa-file mr-1"></i> Admission Number</strong>
+                
+                  <strong><i class="fas fa-file mr-1"></i> Occupation</strong>
   
                   <p class="text-muted">
-                    {{$getRecord->admission_number}}
+                    {{$getRecord->occupation}}
                   </p>
   
                   <hr>
 
-                  <strong><i class="fas fa-calendar mr-1"></i> Enrollment Date</strong>
+                  <strong><i class="fas fa-calendar mr-1"></i> Email</strong>
   
                   <p class="text-muted">
-                    {{$getRecord->admission_date}}
+                    {{$getRecord->email}}
                   </p>
                     
                   <hr>
 
-                  <strong><i class="fas fa-book mr-1"></i> Class</strong>
-  
+                  <strong><i class="fas fa-book mr-1"></i> Gender</strong>
+
                   <p class="text-muted">
-                    {{$getClass->class_name}}
+                    {{$getRecord->gender}}
                   </p>
-  
+
                   <hr>
   
-                  <strong><i class="fas fa-map-marker-alt mr-1"></i> Location</strong>
+                  <strong><i class="fas fa-map-marker-alt mr-1"></i> Address</strong>
   
                   <p class="text-muted"> {{$getRecord->address}}</p>
   
@@ -160,20 +158,14 @@
                                         </select>
                                         <div style="color: red">{{$errors->first('gender')}}</div>
                                     </div>
-            
+
                                     <div class="form-group col-md-6">
-                                        <label >Date of Birth <span style="color: red">*</span></label>
-                                        <input type="date" class="form-control" name="date_of_birth" value="{{ old('date_of_birth', $getRecord->date_of_birth )}}" required>
-                                        
-                                        <div style="color: red">{{$errors->first('date_of_birth')}}</div>
-            
-                                      </div>
-            
-                                    <div class="form-group col-md-6">
-                                        <label >Religion <span style="color: red"></span></label>
-                                        <input type="text" class="form-control" name="religion" value="{{ old('religion', $getRecord->religion)}}" placeholder="Religion">
-                                        <div style="color: red">{{$errors->first('religion')}}</div>
-                                    </div>
+                                      <label >Occupation<span style="color: red">*</span></label>
+                                      <input type="text" class="form-control" name="occupation" value="{{ old('occupation', $getRecord->occupation )}}" required>
+                                      
+                                      <div style="color: red">{{$errors->first('occupation')}}</div>
+          
+                                  </div>
             
                                     <div class="form-group col-md-6">
                                         <label > Address <span style="color: red">*</span></label>
@@ -202,27 +194,7 @@
                                             
                                         @endif
                                     </div>
-            
-                                    <div class="form-group col-md-6">
-                                        <label >Blood Group <span style="color: red"></span></label>
-                                        <input type="text" class="form-control" name="blood_group" value="{{ old('blood_group', $getRecord->blood_group)}}" placeholder="Blood Group" >
-                                        <div style="color: red">{{$errors->first('blood_group')}}</div>
-                                    
-                                    </div>
-            
-                                    <div class="form-group col-md-6">
-                                        <label >Height <span style="color: red"></span></label>
-                                        <input type="text" class="form-control" name="height" value="{{ old('height', $getRecord->height)}}" placeholder="Height" >
-                                        <div style="color: red">{{$errors->first('height')}}</div>
-                                    
-                                    </div>
-            
-                                    <div class="form-group col-md-6">
-                                        <label >Weight <span style="color: red"></span></label>
-                                        <input type="text" class="form-control" name="weight" value="{{ old('weight', $getRecord->weight)}}" placeholder="Weight" >
-                                        <div style="color: red">{{$errors->first('weight')}}</div>
-                                    
-                                    </div>
+
             
                                     <div class="form-group col-md-6">
                                         <label> Email <span style="color: red">*</span></label>

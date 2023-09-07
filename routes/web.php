@@ -31,78 +31,78 @@ Route::post('forgot-password', [AuthController::class, 'PostForgotPassword']);
 Route::get('reset/{token}', [AuthController::class, 'reset']);
 Route::post('reset/{token}', [AuthController::class, 'PostReset']);
 
-Route::group(['middleware' => 'admin'], function(){
+Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
 
     //Admin
-    Route::get('admin/dashboard',[ DashboardController::class, 'dashboard']);
-    Route::get('admin/admin/list', [AdminController::class, 'list']);
-    Route::get('admin/admin/add', [AdminController::class, 'add']);
-    Route::post('admin/admin/add', [AdminController::class, 'insert']);
-    Route::get('admin/admin/edit/{id}', [AdminController::class, 'edit']);
-    Route::post('admin/admin/edit/{id}', [AdminController::class, 'update']);
-    Route::get('admin/admin/delete/{id}', [AdminController::class, 'delete']);
+    Route::get('/dashboard',[ DashboardController::class, 'dashboard']);
+    Route::get('/admin/list', [AdminController::class, 'list']);
+    Route::get('/admin/add', [AdminController::class, 'add']);
+    Route::post('/admin/add', [AdminController::class, 'insert']);
+    Route::get('/admin/edit/{id}', [AdminController::class, 'edit']);
+    Route::post('/admin/edit/{id}', [AdminController::class, 'update']);
+    Route::get('/admin/delete/{id}', [AdminController::class, 'delete']);
 
     //Teacher
-    Route::get('admin/teacher/list', [TeacherController::class, 'list']);
-    Route::get('admin/teacher/add', [TeacherController::class, 'add']);
-    Route::post('admin/teacher/add', [TeacherController::class, 'insert']);
-    Route::get('admin/teacher/edit/{id}', [TeacherController::class, 'edit']);
-    Route::post('admin/teacher/edit/{id}', [TeacherController::class, 'update']);
-    Route::get('admin/teacher/delete/{id}', [TeacherController::class, 'delete']);
+    Route::get('/teacher/list', [TeacherController::class, 'list']);
+    Route::get('/teacher/add', [TeacherController::class, 'add']);
+    Route::post('/teacher/add', [TeacherController::class, 'insert']);
+    Route::get('/teacher/edit/{id}', [TeacherController::class, 'edit']);
+    Route::post('/teacher/edit/{id}', [TeacherController::class, 'update']);
+    Route::get('/teacher/delete/{id}', [TeacherController::class, 'delete']);
 
 
     //student
 
-    Route::get('admin/student/list', [StudentController::class, 'list']);
-    Route::get('admin/student/add', [StudentController::class, 'add']);
-    Route::post('admin/student/add', [StudentController::class, 'insert']);
-    Route::get('admin/student/edit/{id}', [StudentController::class, 'edit']);
-    Route::post('admin/student/edit/{id}', [StudentController::class, 'update']);
-    Route::get('admin/student/delete/{id}', [StudentController::class, 'delete']);
+    Route::get('/student/list', [StudentController::class, 'list']);
+    Route::get('/student/add', [StudentController::class, 'add']);
+    Route::post('/student/add', [StudentController::class, 'insert']);
+    Route::get('/student/edit/{id}', [StudentController::class, 'edit']);
+    Route::post('/student/edit/{id}', [StudentController::class, 'update']);
+    Route::get('/student/delete/{id}', [StudentController::class, 'delete']);
 
 
     //Parent
 
-    Route::get('admin/parent/list', [ParentController::class, 'list']);
-    Route::get('admin/parent/add', [ParentController::class, 'add']);
-    Route::post('admin/parent/add', [ParentController::class, 'insert']);
-    Route::get('admin/parent/edit/{id}', [ParentController::class, 'edit']);
-    Route::post('admin/parent/edit/{id}', [ParentController::class, 'update']);
-    Route::get('admin/parent/delete/{id}', [ParentController::class, 'delete']);
-    Route::get('admin/parent/my_student/{id}', [ParentController::class, 'myStudent']);
-    Route::get('admin/parent/assign_student_to_parent/{student_id}/{parent_id}', [ParentController::class, 'AssignStudentToParent']);
-    Route::get('admin/parent/assign_student_to_parent_delete/{student_id}', [ParentController::class, 'AssignStudentToParentDelete']);
+    Route::get('/parent/list', [ParentController::class, 'list']);
+    Route::get('/parent/add', [ParentController::class, 'add']);
+    Route::post('/parent/add', [ParentController::class, 'insert']);
+    Route::get('/parent/edit/{id}', [ParentController::class, 'edit']);
+    Route::post('/parent/edit/{id}', [ParentController::class, 'update']);
+    Route::get('/parent/delete/{id}', [ParentController::class, 'delete']);
+    Route::get('/parent/my_student/{id}', [ParentController::class, 'myStudent']);
+    Route::get('/parent/assign_student_to_parent/{student_id}/{parent_id}', [ParentController::class, 'AssignStudentToParent']);
+    Route::get('/parent/assign_student_to_parent_delete/{student_id}', [ParentController::class, 'AssignStudentToParentDelete']);
 
     //class url
-    Route::get('admin/class/list', [ClassController::class, 'list']);
-    Route::get('admin/class/add', [ClassController::class, 'add']);
-    Route::post('admin/class/add', [ClassController::class, 'insert']);
-    Route::get('admin/class/edit/{id}', [ClassController::class, 'edit']);
-    Route::post('admin/class/edit/{id}', [ClassController::class, 'update']);
-    Route::get('admin/class/delete/{id}', [ClassController::class, 'delete']);
+    Route::get('/class/list', [ClassController::class, 'list']);
+    Route::get('/class/add', [ClassController::class, 'add']);
+    Route::post('/class/add', [ClassController::class, 'insert']);
+    Route::get('/class/edit/{id}', [ClassController::class, 'edit']);
+    Route::post('/class/edit/{id}', [ClassController::class, 'update']);
+    Route::get('/class/delete/{id}', [ClassController::class, 'delete']);
 
     //subject url
 
-    Route::get('admin/subject/list', [SubjectController::class, 'list']);
-    Route::get('admin/subject/add', [SubjectController::class, 'add']);
-    Route::post('admin/subject/add', [SubjectController::class, 'insert']);
-    Route::get('admin/subject/edit/{id}', [SubjectController::class, 'edit']);
-    Route::post('admin/subject/edit/{id}', [SubjectController::class, 'update']);
-    Route::get('admin/subject/delete/{id}', [SubjectController::class, 'delete']);
+    Route::get('/subject/list', [SubjectController::class, 'list']);
+    Route::get('/subject/add', [SubjectController::class, 'add']);
+    Route::post('/subject/add', [SubjectController::class, 'insert']);
+    Route::get('/subject/edit/{id}', [SubjectController::class, 'edit']);
+    Route::post('/subject/edit/{id}', [SubjectController::class, 'update']);
+    Route::get('/subject/delete/{id}', [SubjectController::class, 'delete']);
 
     //Assign Subject
 
-    Route::get('admin/assign_subject/list', [ClassSubjectController::class, 'list']);
-    Route::get('admin/assign_subject/add', [ClassSubjectController::class, 'add']);
-    Route::post('admin/assign_subject/add', [ClassSubjectController::class, 'insert']);
-    Route::get('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'edit']);
-    Route::post('admin/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
-    Route::get('admin/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
-    Route::get('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
-    Route::post('admin/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
+    Route::get('/assign_subject/list', [ClassSubjectController::class, 'list']);
+    Route::get('/assign_subject/add', [ClassSubjectController::class, 'add']);
+    Route::post('/assign_subject/add', [ClassSubjectController::class, 'insert']);
+    Route::get('/assign_subject/edit/{id}', [ClassSubjectController::class, 'edit']);
+    Route::post('/assign_subject/edit/{id}', [ClassSubjectController::class, 'update']);
+    Route::get('/assign_subject/delete/{id}', [ClassSubjectController::class, 'delete']);
+    Route::get('/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'edit_single']);
+    Route::post('/assign_subject/edit_single/{id}', [ClassSubjectController::class, 'update_single']);
 
-    Route::get('admin/change_password', [UserController::class, 'change_password']);
-    Route::post('admin/change_password', [UserController::class, 'update_change_password']);
+    Route::get('/change_password', [UserController::class, 'change_password']);
+    Route::post('/change_password', [UserController::class, 'update_change_password']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){
@@ -113,28 +113,32 @@ Route::group(['middleware' => 'teacher'], function(){
     Route::post('teacher/change_password', [UserController::class, 'update_change_password']);
 
      //My Account
-     Route::get('teacher/account', [UserController::class, 'myAccount']);
-     Route::post('teacher/account', [UserController::class, 'updateMyAccount']);
+    Route::get('teacher/account', [UserController::class, 'myAccount']);
+    Route::post('teacher/account', [UserController::class, 'updateMyAccount']);
      
 });
 
-Route::group(['middleware' => 'student'], function(){
-    Route::get('student/dashboard', [DashboardController::class, 'dashboard']);
+Route::group(['middleware' => 'student','prefix' => 'student'], function(){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
       //My Account
-    Route::get('student/account', [UserController::class, 'myAccount']);
-    Route::post('student/account', [UserController::class, 'updateMyStudentAccount']);
+    Route::get('/account', [UserController::class, 'myAccount']);
+    Route::post('/account', [UserController::class, 'updateMyStudentAccount']);
 
-    Route::get('student/change_password', [UserController::class, 'change_password']);
-    Route::post('student/change_password', [UserController::class, 'update_change_password']);
+    Route::get('/change_password', [UserController::class, 'change_password']);
+    Route::post('/change_password', [UserController::class, 'update_change_password']);
 
 });
 
-Route::group(['middleware' => 'parent'],  function(){
-    Route::get('parent/dashboard', [DashboardController::class, 'dashboard']);
+Route::group(['middleware' => 'parent', 'prefix' => 'parent'],  function(){
+    Route::get('/dashboard', [DashboardController::class, 'dashboard']);
 
-    Route::get('parent/change_password', [UserController::class, 'change_password']);
-    Route::post('parent/change_password', [UserController::class, 'update_change_password']);
+          //My Account
+    Route::get('/account', [UserController::class, 'myAccount']);
+    Route::post('/account', [UserController::class, 'updateParentAccount']);
+
+    Route::get('/change_password', [UserController::class, 'change_password']);
+    Route::post('/change_password', [UserController::class, 'update_change_password']);
 
 });
 
