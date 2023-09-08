@@ -153,6 +153,17 @@
           </li>
 
           <li class="nav-item">
+            <a href="{{url('admin/account')}}" class="nav-link @if ( Request::segment(2) == 'account') active @endif ">
+              <i class="nav-icon far fa-user"></i>
+              <p>
+
+               My Account
+
+              </p>
+            </a>
+          </li>
+
+          <li class="nav-item">
             <a href="{{url('admin/teacher/list')}}" class="nav-link @if ( Request::segment(2) == 'teacher') active @endif ">
               <i class="nav-icon far fa-user"></i>
               <p>
@@ -286,6 +297,17 @@
 
           </li>
 
+          <li class="nav-item menu-open">
+            <a href="{{url('student/my_subject')}}" class="nav-link @if ( Request::segment(2) == 'my_subject') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Subject
+
+              </p>
+            </a>
+
+          </li>
+
           <li class="nav-item">
             <a href="{{url('student/change_password')}}" class="nav-link @if ( Request::segment(2) == 'change_password') active @endif ">
               <i class="nav-icon fas fa-book"></i>
@@ -315,6 +337,17 @@
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 My Account
+
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-item menu-open">
+            <a href="{{url('parent/my_student')}}" class="nav-link @if ( Request::segment(2) == 'my_student') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Student
 
               </p>
             </a>

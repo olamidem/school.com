@@ -18,14 +18,21 @@ class UserController extends Controller
         $data['getClass'] =  User::getClassName(Auth::user()->id);
         $data['header_title'] = 'My Account';
 
-        if (Auth::user()->user_type == 2) {
+        if (Auth::user()->user_type == 1) {
+
+            return view('admin/admin/my_account', $data);
+        }
+
+        else if (Auth::user()->user_type == 2) {
 
             return view('teacher/my_account', $data);
         }
+
         else if(Auth::user()->user_type == 3){
             
             return view('student/my_account', $data);
         }
+        
         else if(Auth::user()->user_type == 4){
             
             return view('parent/my_account', $data);
@@ -89,6 +96,40 @@ class UserController extends Controller
 
     }
     
+    
+    public function myAdminAccount( Request $request){
+
+        $id = Auth::user()->id;
+        request()->validate([
+            'email' => 'required|email|unique:users,email,'.$id
+        ]);
+
+        $admin = User::getSingle($id);
+        $admin->name = trim($request->name);
+        $admin->email = trim($request->email);
+        if (!empty($request->file('profile_pic'))) {
+
+            if(!empty($admin->getProfile())){
+
+                unlink('upload/profile/'.$admin->profile_pic);
+            }
+            
+            $ext = $request->file('profile_pic')->getClientOriginalExtension();
+            $file = $request->file('profile_pic');
+            $randomStr = date('Ymdhis').Str::random(20);
+            $filename = strtolower($randomStr ).'.'.$ext;
+            $file->move('upload/profile/', $filename);
+
+            $admin->profile_pic = $filename;
+             
+        }
+        
+        
+        $admin->save();
+
+        return redirect()->back()->with('success', 'Admin Successfully Updated');
+
+    }
 
     public function updateParentAccount(Request $request){
         
