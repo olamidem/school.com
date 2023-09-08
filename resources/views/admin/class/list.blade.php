@@ -89,8 +89,8 @@
                 <h3 class="card-title">Class List</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table table-striped">
+              <div class="card-body table-responsive table-striped  p-0">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th>#</th>

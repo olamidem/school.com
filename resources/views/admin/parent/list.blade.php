@@ -18,7 +18,7 @@
           </div>
         </div>
       </div>
-      
+    </section> 
     <!-- Main content -->
     <section class="content">
 
@@ -90,8 +90,8 @@
                 <h3 class="card-title">Parent List</h3>
               </div>
               <!-- /.card-header -->
-              <div class="card-body p-0">
-                <table class="table table-striped">
+              <div class="card-body table-responsive table-striped  p-0">
+                <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
                       <th>#</th>
@@ -103,7 +103,7 @@
                       <th>Gender</th>
                       <th>Status</th>
                       <th >Date Created</th>
-                      <th >Action</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>

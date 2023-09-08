@@ -2,34 +2,28 @@
 
 @section('content')
 
-  <!-- Content Wrapper. Contains page content -->
-  <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <div class="container-fluid">
-        <div class="row mb-2">
-          <div class="col-sm-6">
-            <h1>My Student </h1>
-          </div>
+ <!-- Content Wrapper. Contains page content -->
+ <div class="content-wrapper">
+  <!-- Content Header (Page header) -->
+  <section class="content-header">
+    <div class="container-fluid">
+      <div class="row mb-2">
+        <div class="col-sm-6">
+          <h1>My Student </h1>
         </div>
+        
       </div>
-      
+    </div>
+  </section> 
+    </section>
     <!-- Main content -->
     <section class="content">
 
-
-      
-      <div class="row">
-        <!-- left column -->
-       
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
 
             @include('_message')
-
-
-
 
             <!-- /.card -->
             <div class="card">
@@ -37,8 +31,8 @@
                   <h3 class="card-title">My Student</h3>
                 </div>
                 <!-- /.card-header -->
-                <div class="card-body p-0">
-                  <table class="table table-striped" style="overflow: auto">
+                <div class="card-body table-responsive table-striped  p-0">
+                  <table class="table table-hover text-nowrap">
                     <thead>
                       <tr>
                         <th>#</th>
@@ -57,6 +51,7 @@
                         <th>Height</th>
                         <th>Weight</th>
                         <th >Date Created</th>
+                        <th class="text-center">Action</th>
                      
                       </tr>
                     </thead>
@@ -92,7 +87,13 @@
                     
                         <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                         
-                        
+                        <td>
+                          <a class="btn btn-info btn-sm" href="{{url('parent/my_student/'.$value->id)}}">
+                            <i class="fas fa-eyes">
+                            </i>
+                            View Subject
+                        </a>
+                        </td>
                       </tr>
                           
                       @endforeach
@@ -101,17 +102,19 @@
                   </table>
   
                    
-                </div>
-                <!-- /.card-body -->
+                 
               </div>
+              <!-- /.card-body -->
+            </div>
             <!-- /.card -->
           </div>
           <!-- /.col -->
         </div>
  
       </div><!-- /.container-fluid -->
-    </section>
-    <!-- /.content -->
-  </div>
+   
+ </div>
+ 
+</div>
 
 @endsection
