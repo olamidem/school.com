@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\SubjectModel;
+use App\Models\User;
 use App\Models\ClassSubjectModel;
 use Illuminate\Support\Facades\Auth;
 
@@ -94,4 +95,14 @@ class SubjectController extends Controller
         return view('student/my_subject',$data);
     }
 
+    public function ParentStudentSubject($student_id){
+
+        $user = User::getSingle($student_id); 
+        
+        $data['getUser'] = $user;
+        $data['getRecord'] = ClassSubjectModel::mySubject($user->class_id);
+        $data['header_title'] = 'My Student Subject';
+
+        return view('parent/my_student_subject',$data);
+    }
 }

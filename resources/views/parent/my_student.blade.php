@@ -88,7 +88,7 @@
                         <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
                         
                         <td>
-                          <a class="btn btn-info btn-sm" href="{{url('parent/my_student/'.$value->id)}}">
+                          <a class="btn btn-info btn-sm" href="{{url('parent/my_student/subject/'.$value->id)}}">
                             <i class="fas fa-eyes">
                             </i>
                             View Subject

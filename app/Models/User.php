@@ -134,6 +134,18 @@ class User extends Authenticatable
 
     }
 
+    public static function getTeacherClass()
+    {
+        return User::where([
+
+            ['users.user_type', 2],
+            ['users.is_delete', 0],
+        ])
+            ->orderByDesc('users.id')
+            ->get();
+    }
+
+ 
     static public function getParent(){
         $return =  User::select('users.*')
                         ->where('user_type', '=', 4)
@@ -159,6 +171,8 @@ class User extends Authenticatable
 
         return $return;
     }
+
+
 
     static public function getSearchStudent(){
 
