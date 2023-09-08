@@ -41,23 +41,23 @@
                   <thead>
                     <tr>
                       <th>#</th>
+                      <th>Class Name</th>
                       <th>Teacher Name</th>
-                      <th>Subject Name</th>
                       <th>Status </th>
                       <th>Created By </th>
                       <th>Date Created</th>
-                      <th>Action</th>
+                      <th class="text-center">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    {{-- @php
+                    @php
                       $index = 1
                     @endphp
                     @foreach ($getRecord as $value)
                     <tr>
                       <td>{{$index ++}}</td>
                       <td>{{$value->class_name}}</td>
-                      <td>{{$value->subject_name}}</td>
+                      <td>{{$value->teacher_name}}</td>
                       <td>
 
                         @if ($value->status == 0)
@@ -70,7 +70,7 @@
                       <td>{{$value->created_by_name}}</td>
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
 
-                      <td class="project-actions text-right">
+                      <td class="project-actions text-center">
                         <a class="btn btn-primary btn-sm" href="{{url('admin/assign_subject/edit_single/'.$value->id)}}">
                             <i class="fas fa-pen-alt">
                             </i>
@@ -91,10 +91,15 @@
                       
                     </tr>
                         
-                    @endforeach --}}
+                    @endforeach 
                    
                   </tbody>
                 </table>
+                <div style="float: right;padding: 10px">
+                  
+                  {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!}
+
+                </div>
               </div>
               <!-- /.card-body -->
             </div>
