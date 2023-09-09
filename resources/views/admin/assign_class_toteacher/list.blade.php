@@ -71,17 +71,17 @@
                       <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
 
                       <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="{{url('admin/assign_subject/edit_single/'.$value->id)}}">
+                        <a class="btn btn-primary btn-sm" href="{{url('admin/assign_class_toteacher/edit_single/'.$value->id)}}">
                             <i class="fas fa-pen-alt">
                             </i>
                             Edit Single
                         </a>
-                        <a class="btn btn-info btn-sm" href="{{url('admin/parent/edit/'.$value->id)}}">
+                        <a class="btn btn-info btn-sm" href="{{url('admin/assign_class_toteacher/edit/'.$value->id)}}">
                             <i class="fas fa-edit">
                             </i>
                             Edit
                         </a>
-                        <a class="btn btn-danger btn-sm" href="{{url('admin/assign_subject/delete/'.$value->id)}}" >
+                        <a class="btn btn-danger btn-sm" href="{{url('admin/assign_class_toteacher/delete/'.$value->id)}}" >
                             <i class="fas fa-trash">
                             </i>
                             Delete

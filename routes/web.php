@@ -109,9 +109,15 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
     Route::get('/change_password', [UserController::class, 'change_password']);
     Route::post('/change_password', [UserController::class, 'update_change_password']);
 
+    //Assign class teacher
     Route::get('/assign_class_toteacher/list', [AssignClassTeacherController::class, 'list']);
     Route::get('/assign_class_toteacher/add', [AssignClassTeacherController::class, 'add']);
     Route::post('/assign_class_toteacher/add', [AssignClassTeacherController::class, 'insert']);
+    Route::get('/assign_class_toteacher/edit/{id}', [AssignClassTeacherController::class, 'edit']);
+    Route::post('/assign_class_toteacher/edit/{id}', [AssignClassTeacherController::class, 'update']);
+    Route::get('/assign_class_toteacher/edit_single/{id}', [AssignClassTeacherController::class, 'edit_single']);
+    Route::post('/assign_class_toteacher/edit_single/{id}', [AssignClassTeacherController::class, 'update_single']);
+    Route::get('/assign_class_toteacher/delete/{id}', [AssignClassTeacherController::class, 'delete']);
 });
 
 Route::group(['middleware' => 'teacher'], function(){

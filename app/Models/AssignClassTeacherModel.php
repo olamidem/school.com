@@ -30,4 +30,23 @@ class AssignClassTeacherModel extends Model
         return $return;
         
     }
+
+    public static function getSingle($id){
+
+        return self::find($id);
+    }
+
+    static public function getAssignedTeacherID($class_id){
+
+        return self::where('class_id', '=', $class_id)->where('is_delete', '=', 0)->get();
+
+
+    }
+
+    static public function deleteTeacher($class_id){
+
+        return self::where('class_id', '=', $class_id)->delete();
+
+
+    }
 }
