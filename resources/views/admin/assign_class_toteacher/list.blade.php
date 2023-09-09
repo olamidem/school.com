@@ -10,7 +10,7 @@
         <div class="row mb-2">
           <div class="col-sm-6">
             {{-- <h1>Admin List (Total - {{$getRecord->total()}})</h1> --}}
-            <h1>Assigned Class to Teacher List </h1>
+            <h1>Assigned Class to Teacher - ({{ $getRecord->total() }} )</h1>
           </div>
           <div class="col-sm-6" style="text-align: right">
 
@@ -27,7 +27,48 @@
       <div class="container-fluid">
         <div class="row">
           <div class="col-md-12">
+            <div class="card ">
+              <div class="card-header">
+                <h3 class="card-title">Search Assign Class Teacher</h3>
+              </div>
+              <form method="get">
+        
+                <div class="card-body">
+  
+                  <div class="row">
+                    <div class="form-group col-md-3">
+                      <label >Clss Name</label>
+                      <input type="text" class="form-control" name="class_name" value="{{Request::get('class_name')}}" placeholder="Class Name">
+                    </div>
+                    
+                    <div class="form-group col-md-3">
+                      <label >Teacher Name</label>
+                      <input type="text" class="form-control" name="teacher_name" value="{{Request::get('teacher_name')}}" placeholder="Teacher Name">
+                    </div>
 
+                    <div class="form-group col-md-3">
+                      <label > Status</label>
+                      <select class="form-control" name="status">
+                        <option>Select</option>
+                        <option {{(Request::get('status') == 100)? 'selected': ''  }} value="100">Active</option>
+                        <option {{(Request::get('status') == 1)? 'selected': ''  }} value="1">Inactive</option>
+                      </select>
+                    </div>
+                    
+  
+                    <div class="form-group col-md-3">
+                     
+                        <button type="submit" class="btn btn-primary  " style="margin-top: 30px">Search</button>
+                        <a href="{{url('admin/assign_class_toteacher/list')}}"  class="btn btn-primary  " style="margin-top: 30px">Reset</a>
+                   
+                    </div>
+  
+                  </div>
+                  
+                </div>
+                <!-- /.card-body -->
+              </form>
+            </div>
             @include('_message')
 
             <!-- /.card -->
@@ -63,7 +104,7 @@
                         @if ($value->status == 0)
                             <span class="badge badge-success">Active</span>
                         @else
-                        <span class="badge badge-danger">Inactive</span>
+                          <span class="badge badge-danger">Inactive</span>
                         @endif
 
                       </td>

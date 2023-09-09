@@ -84,10 +84,10 @@ class AssignClassTeacherController extends Controller
         
     }
 
-    public function update($id, Request $request){
-
+    public function update( Request $request){
+      
         AssignClassTeacherModel::deleteTeacher($request->class_id);
-
+       
         if (!empty($request->teacher_id)) {
             
             foreach ($request->teacher_id as $teacher_id) {
@@ -99,7 +99,7 @@ class AssignClassTeacherController extends Controller
                     $getFirstAlready->save();
 
                 } else {
-                    
+       
                     $save = new AssignClassTeacherModel();
                     $save->class_id = $request->class_id;
                     $save->teacher_id = $teacher_id;
@@ -111,8 +111,7 @@ class AssignClassTeacherController extends Controller
                 }
              
             }
-
-        } 
+        }
             
         return redirect('admin/assign_class_toteacher/list')->with('success', 'Assign Class to Teacher Successfully  updated');
         
@@ -120,8 +119,7 @@ class AssignClassTeacherController extends Controller
 
 
     public function edit_single($id){
-
-        
+ 
         $getRecord = AssignClassTeacherModel::getSingle($id);
 
         if (!empty($getRecord)) {
@@ -142,7 +140,6 @@ class AssignClassTeacherController extends Controller
     }
 
     public function update_single($id, Request $request){
-
 
         $getFirstAlready = AssignClassTeacherModel::getFirstAlready($request->class_id, $request->teacher_id);
         if (!empty($getFirstAlready)) {

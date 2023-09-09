@@ -38,7 +38,7 @@
                 <div class="row">
                   <div class="form-group col-md-3">
                     <label >Clss Name</label>
-                    <input type="text" class="form-control" name="class_name" value="{{Request::get('class_name')}}" placeholder="Subject Name">
+                    <input type="text" class="form-control" name="class_name" value="{{Request::get('class_name')}}" placeholder="Class Name">
                   </div>
                   
                   <div class="form-group col-md-3">
@@ -120,7 +120,7 @@
                             </i>
                             Edit Single
                         </a>
-                        <a class="btn btn-info btn-sm" href="{{url('admin/parent/edit/'.$value->id)}}">
+                        <a class="btn btn-info btn-sm" href="{{url('admin/assign_subject/edit/'.$value->id)}}">
                             <i class="fas fa-edit">
                             </i>
                             Edit
