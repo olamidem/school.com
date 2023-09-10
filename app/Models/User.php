@@ -105,6 +105,40 @@ class User extends Authenticatable
 
         return $return;
     }
+    static public function getTeacherStudent($teacher_id){
+        $return =  User::select('users.*', 'class.name as class_name')
+                        ->join('class','class.id', '=', 'users.class_id')
+                        ->join('assign_class_teacher','assign_class_teacher.class_id', '=', 'class.id')
+                        ->where([
+                            ['users.user_type', '=', 3],
+                            ['users.is_delete', '=', 0],
+                            ['assign_class_teacher.teacher_id', '=', $teacher_id],
+                            ['assign_class_teacher.is_delete', '=', 0],
+                            ['assign_class_teacher.status', '=', 0],
+                        ]);
+
+                        if(!empty(Request::get('email'))){
+                            $return =   $return->where('email', 'like','%'.Request::get('email').'%');
+                        }
+
+                        if(!empty(Request::get('name'))){
+                            $return =   $return->where('users.name', 'like','%'.Request::get('name').'%');
+                        }
+
+                        if(!empty(Request::get('admission_number '))){
+                            $return =   $return->where('admission_number', 'like','%'.Request::get('admission_number').'%');
+                        }
+
+                        if(!empty(Request::get('date'))){
+                            $return =   $return->whereDate('created_at', '=', Request::get('date'));
+                        }
+
+                        $return =   $return->orderBy('users.id', 'desc')
+                        ->groupBY('users.id')
+                        ->paginate(20);
+
+        return $return;
+    }
 
     static public function getTeacher(){
         

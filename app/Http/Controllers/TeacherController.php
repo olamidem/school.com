@@ -157,4 +157,5 @@ class TeacherController extends Controller
         return redirect()->back()->with('success', 'Teacher Successfully Deleted');
 
     }
+
 }

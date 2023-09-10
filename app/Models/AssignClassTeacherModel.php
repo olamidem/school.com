@@ -59,6 +59,42 @@ class AssignClassTeacherModel extends Model
         
     }
 
+    public static function getMyClassSubject($teacher_id){
+
+       // Start with the base query
+        $query = AssignClassTeacherModel::select(
+            'assign_class_teacher.*',
+            'class.name as class_name',
+            'subject.name as subject_name',
+            'subject.type as subject_type',
+            'users.name as created_by_name'
+        )
+            ->join('class', 'class.id', '=', 'assign_class_teacher.class_id')
+            ->join('class_subject', 'class_subject.class_id', '=', 'class.id')
+            ->join('subject', 'subject.id', '=', 'class_subject.subject_id')
+            ->join('users', 'users.id', '=', 'assign_class_teacher.created_by');
+
+        // Additional filters
+        $query->where([
+                        ['assign_class_teacher.is_delete', '=', 0],
+                        ['assign_class_teacher.status', '=', 0],
+                        ['subject.status', '=', 0],
+                        ['subject.is_delete', '=', 0],
+                        ['class_subject.is_delete', '=', 0],
+                        ['class_subject.status', '=', 0],
+                        ['assign_class_teacher.teacher_id', '=',$teacher_id ],
+                        
+                        ])
+            ->orderBy('assign_class_teacher.id', 'desc');
+
+        // Paginate the results with a limit of 20 per page
+        $results = $query->get();
+
+        return $results;
+
+        
+    }
+
     public static function getSingle($id){
 
         return self::find($id);
@@ -77,5 +113,6 @@ class AssignClassTeacherModel extends Model
 
 
     }
+
 
 }

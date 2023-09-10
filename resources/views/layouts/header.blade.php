@@ -8,7 +8,7 @@
       <li class="nav-item">
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
-     
+
     </ul>
 
     <!-- Right navbar links -->
@@ -99,7 +99,7 @@
           <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
         </div>
       </li>
-      
+
     </ul>
   </nav>
 
@@ -107,7 +107,7 @@
   <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="javasscript;" class="brand-link " style="text-align: center">
-      
+
       <span class="brand-text font-bold" style="font-weight: bold !important"><b>School</b></span>
     </a>
 
@@ -127,7 +127,7 @@
       <nav class="mt-2">
 
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
-        
+
           @if(Auth::user()->user_type == 1)
 
           <li class="nav-item menu-open">
@@ -135,7 +135,7 @@
               <i class="nav-icon fas fa-tachometer-alt"></i>
               <p>
                 Dashboard
-                
+
               </p>
             </a>
 
@@ -262,11 +262,33 @@
 
           </li>
 
-          <li class="nav-item menu-open">
+          <li class="nav-item">
             <a href="{{url('teacher/account')}}" class="nav-link @if ( Request::segment(2) == 'account') active @endif ">
               <i class="nav-icon fas fa-user-alt"></i>
               <p>
                 My Account
+
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-itemn">
+            <a href="{{url('teacher/my_class_subject')}}" class="nav-link @if ( Request::segment(2) == 'my_class_subject') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Class & Subject
+
+              </p>
+            </a>
+
+          </li>
+
+          <li class="nav-itemn">
+            <a href="{{url('teacher/my_student')}}" class="nav-link @if ( Request::segment(2) == 'my_student') active @endif ">
+              <i class="nav-icon fas fa-user-alt"></i>
+              <p>
+                My Student
 
               </p>
             </a>
@@ -331,7 +353,7 @@
           </li>
 
           @elseif(Auth::user()->user_type == 4)
-        
+
           <li class="nav-item menu-open">
             <a href="{{url('parent/dashboard')}}" class="nav-link @if ( Request::segment(2) == 'dashboard') active @endif >
               <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -375,7 +397,7 @@
               </p>
             </a>
           </li>
-          
+
           @endif
 
           <li class="nav-item">

@@ -42,7 +42,7 @@
 
                   <div class="form-group">
                     <label>Teacher Name </label>
-                    <select name="class_id" id="" class="form-control" required>
+                    <select name="teacher_id" id="" class="form-control" required>
                         <option value="">Select Teacher</option>
                         @foreach ($getTeacher as $teacher)
                         <option {{($getRecord->teacher_id == $teacher->id) ? 'selected' : ''}} value="{{$teacher->id}}">{{$teacher->name}}</option>

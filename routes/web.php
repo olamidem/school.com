@@ -130,6 +130,12 @@ Route::group(['middleware' => 'teacher'], function(){
      //My Account
     Route::get('teacher/account', [UserController::class, 'myAccount']);
     Route::post('teacher/account', [UserController::class, 'updateMyAccount']);
+
+    //my call and subject
+    Route::get('teacher/my_class_subject', [AssignClassTeacherController::class, 'myClassSubject']);
+
+    //my Student
+    Route::get('teacher/my_student', [StudentController::class, 'myStudent']);
      
 });
 
