@@ -37,16 +37,21 @@
                       <select name="class_id" id="" class="form-control getClass" required>
                         <option value="">Select Class</option>
                         @foreach ($getClass as $class)
-                        <option value="{{$class->id}}">{{$class->name}}</option>
+                          <option  {{ (Request::get('class_id')==$class->id) ? 'selected' : '' }}   value="{{$class->id}}">{{$class->name}}</option>
                         @endforeach
                     </select>
-                    
+                   
                     </div>
                     
                     <div class="form-group col-md-3">
                       <label >Subject Name</label>
                       <select name="subject_id" id="" class="form-control getSubject" required>
                         <option value="">Select Class</option>
+                        @if(!empty($getSubject))
+                         @foreach ($getSubject as $subject)
+                          <option  {{ (Request::get('subject_id')==$subject->subject_id) ? 'selected' : '' }}   value="{{$subject->subject_id}}">{{$subject->subject_name}}</option>
+                         @endforeach
+                        @endif
                     </select>
                     </div>
 
@@ -65,80 +70,64 @@
                 <!-- /.card-body -->
               </form>
             </div>
-            @include('_message')
+       
 
-            <!-- /.card -->
+            @if(!empty(Request::get('class_id')) && !empty(Request::get('subject_id')))
+        
+          <form action="" method="post">
+            {{ csrf_field() }}
+              <input type="hidden" name="subject_id" value="{{ Request::get('subject_id') }}">
+
+              <input type="hidden" name="class_id" value="{{ Request::get('class_id') }}">
+
             <div class="card">
               <div class="card-header">
-                <h3 class="card-title">Subject List</h3>
+                <h3 class="card-title">Class Timetable</h3>
               </div>
               <!-- /.card-header -->
               <div class="card-body table-responsive table-striped  p-0">
                 <table class="table table-hover text-nowrap">
                   <thead>
                     <tr>
-                      <th>#</th>
-                      <th>Class Name</th>
-                      <th>Teacher Name</th>
-                      <th>Status </th>
-                      <th>Created By </th>
-                      <th>Date Created</th>
-                      <th class="text-center">Action</th>
+                      <th> Week</th>
+                      <th>Start Time</th>
+                      <th>End Time </th>
+                      <th>Room Number</th>
                     </tr>
                   </thead>
                   <tbody>
-                    @php
-                      $index = 1
-                    @endphp
-                    {{-- @foreach ($getRecord as $value)
-                    <tr>
-                      <td>{{$index ++}}</td>
-                      <td>{{$value->class_name}}</td>
-                      <td>{{$value->teacher_name}}</td>
-                      <td>
+                    @foreach ($week as $value)
+                        <tr>
 
-                        @if ($value->status == 0)
-                            <span class="badge badge-success">Active</span>
-                        @else
-                          <span class="badge badge-danger">Inactive</span>
-                        @endif
+                          <td>
+                            <input type="hidden" name="week_id" value="{{ week_id }}">
+                            {{$value['week_name']}}
+                          </td>
+                          <td>
+                            <input type="time" name="start_time" class="form-control">
+                          </td>
 
-                      </td>
-                      <td>{{$value->created_by_name}}</td>
-                      <td>{{date('d-m-Y H:i A', strtotime($value->created_at))}}</td>
-
-                      <td class="project-actions text-center">
-                        <a class="btn btn-primary btn-sm" href="{{url('admin/assign_class_toteacher/edit_single/'.$value->id)}}">
-                            <i class="fas fa-pen-alt">
-                            </i>
-                            Edit Single
-                        </a>
-                        <a class="btn btn-info btn-sm" href="{{url('admin/assign_class_toteacher/edit/'.$value->id)}}">
-                            <i class="fas fa-edit">
-                            </i>
-                            Edit
-                        </a>
-                        <a class="btn btn-danger btn-sm" href="{{url('admin/assign_class_toteacher/delete/'.$value->id)}}" >
-                            <i class="fas fa-trash">
-                            </i>
-                            Delete
-                        </a>
-                    </td>
-
+                          <td>
+                            <input type="time" name="end_time" class="form-control">
+                          </td>
                       
-                    </tr>
-                        
-                    @endforeach  --}}
+                          <td>
+                            <input type="text" style="width: 200px;" name="room_number" class="form-control">
+                          </td>
+
+                        </tr>
+                    @endforeach 
                    
                   </tbody>
                 </table>
-                <div style="float: right;padding: 10px">
-                  
-                  {{-- {!! $getRecord->appends(Illuminate\Support\Facades\Request::except('page'))->links() !!} --}}
-
+             
+                <div class="text-center p-4">
+                   <button class="btn btn-primary">Submit</button>
                 </div>
               </div>
+            </form>
               <!-- /.card-body -->
+            @endif
             </div>
             <!-- /.card -->
           </div>
