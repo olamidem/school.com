@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\ParentController;
 use App\Http\Controllers\AssignClassTeacherController;
+use App\Http\Controllers\ClassTimetableController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,6 +86,11 @@ Route::group(['middleware' => 'admin', 'prefix' => 'admin'], function(){
     Route::get('/class/edit/{id}', [ClassController::class, 'edit']);
     Route::post('/class/edit/{id}', [ClassController::class, 'update']);
     Route::get('/class/delete/{id}', [ClassController::class, 'delete']);
+
+    //class timetable
+
+    Route::get('/class_timetable/list',[ClassTimetableController::class, 'list']);
+    Route::post('/class_timetable/get_subject',[ClassTimetableController::class, 'get_subject']);
 
     //subject url
 
